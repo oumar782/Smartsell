@@ -39,7 +39,7 @@ import {
   Briefcase,
   BarChart
 } from 'lucide-react';
-import './Home.css';
+import './home.css';
 
 // ==========================================
 // DONNÉES STATIQUES
