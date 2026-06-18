@@ -3,7 +3,7 @@ import '../App.css'
 import './Elearning.css'
 import PageHero from '../components/PageHero'
 
-export default function Elearning(){
+export default function Elearning() {
   const [activeVideo, setActiveVideo] = useState(null)
   const [hoveredCourse, setHoveredCourse] = useState(null)
 
@@ -89,94 +89,110 @@ export default function Elearning(){
   ]
 
   return (
-    <div className="elearning-page">
+    <div className="smartsell-elearning-page">
       <PageHero
         eyebrow="E-LEARNING"
-        title="Formations digitales conçues pour aller vite et marquer les esprits"
+        title="Formations digitales conçues pour <span class='highlight'>aller vite</span> et marquer les esprits"
         description="Un catalogue de modules courts, concrets et visuels pour monter en compétences rapidement."
         primaryAction={{ label: 'Voir le catalogue', href: '#courses' }}
         secondaryAction={{ label: 'Contact', href: '#contact' }}
         image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80&fit=crop"
         topBadge="SAVOIR-FAIRE"
         bottomBadge="Des programmes actionnables pour les équipes et indépendants."
+        stats={[
+          { number: '12+', label: 'Formations' },
+          { number: '8.7k', label: 'Étudiants' },
+          { number: '4.8', label: 'Note moyenne' }
+        ]}
+        gradient="mixed"
       />
 
-      <div className="elearning-container" id="courses">
+      <div className="smartsell-elearning-container" id="courses">
         {/* ===== STATS BANNER ===== */}
-        <div className="elearning-stats-banner">
-          <div className="elearning-stat-item">
-            <span className="elearning-stat-number">12+</span>
-            <span className="elearning-stat-label">Formations</span>
+        <div className="smartsell-elearning-stats-banner">
+          <div className="smartsell-elearning-stat-item">
+            <span className="smartsell-elearning-stat-number" data-count="12">12+</span>
+            <span className="smartsell-elearning-stat-label">Formations</span>
           </div>
-          <div className="elearning-stat-item">
-            <span className="elearning-stat-number">8.7k</span>
-            <span className="elearning-stat-label">Étudiants</span>
+          <div className="smartsell-elearning-stat-item">
+            <span className="smartsell-elearning-stat-number" data-count="8700">8.7k</span>
+            <span className="smartsell-elearning-stat-label">Étudiants</span>
           </div>
-          <div className="elearning-stat-item">
-            <span className="elearning-stat-number">4.8</span>
-            <span className="elearning-stat-label">Note moyenne</span>
+          <div className="smartsell-elearning-stat-item">
+            <span className="smartsell-elearning-stat-number" data-count="4.8">4.8</span>
+            <span className="smartsell-elearning-stat-label">Note moyenne</span>
           </div>
-          <div className="elearning-stat-item">
-            <span className="elearning-stat-number">98%</span>
-            <span className="elearning-stat-label">Satisfaction</span>
+          <div className="smartsell-elearning-stat-item">
+            <span className="smartsell-elearning-stat-number" data-count="98">98%</span>
+            <span className="smartsell-elearning-stat-label">Satisfaction</span>
           </div>
         </div>
 
         {/* ===== CATALOGUE ===== */}
-        <section className="elearning-section">
-          <div className="elearning-section-header">
-            <span className="elearning-badge">Catalogue</span>
-            <h2 className="elearning-section-title">
-              <span className="elearning-title-gradient">Des parcours conçus pour performer</span>
+        <section className="smartsell-elearning-section">
+          <div className="smartsell-elearning-section-header">
+            <span className="smartsell-elearning-badge smartsell-badge-float">
+              <span className="smartsell-badge-dot" />
+              Catalogue
+            </span>
+            <h2 className="smartsell-elearning-section-title">
+              <span className="smartsell-elearning-title-gradient">Des parcours conçus pour performer</span>
             </h2>
-            <p className="elearning-section-subtitle">
+            <p className="smartsell-elearning-section-subtitle">
               Choisissez la formation qui fait briller votre marque et vos équipes.
             </p>
+            <div className="smartsell-elearning-header-decoration">
+              <span className="smartsell-elearning-deco-line" />
+              <span className="smartsell-elearning-deco-diamond">◆</span>
+              <span className="smartsell-elearning-deco-line" />
+            </div>
           </div>
 
-          <div className="elearning-grid">
+          <div className="smartsell-elearning-grid">
             {courses.map((course, i) => (
               <article 
                 key={course.id} 
-                className="elearning-card"
-                style={{ animationDelay: `${i * 0.08}s` }}
+                className="smartsell-elearning-card"
+                style={{ '--smartsell-card-delay': `${i * 0.08}s` }}
                 onMouseEnter={() => setHoveredCourse(course.id)}
                 onMouseLeave={() => setHoveredCourse(null)}
               >
-                <div className="elearning-card-image-wrapper">
+                <div className="smartsell-elearning-card-image-wrapper">
                   <img 
                     src={course.thumbnail} 
                     alt={course.title}
-                    className="elearning-card-image"
+                    className="smartsell-elearning-card-image"
                     loading="lazy"
                   />
-                  <div className="elearning-card-overlay">
+                  <div className="smartsell-elearning-card-overlay">
                     <button 
-                      className="elearning-card-play"
+                      className="smartsell-elearning-card-play"
                       onClick={() => setActiveVideo(course.id)}
+                      aria-label="Lire la vidéo"
                     >
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="5 3 19 12 5 21 5 3"/>
                       </svg>
                     </button>
                   </div>
-                  <div className="elearning-card-badges">
-                    <span className="elearning-card-level">{course.level}</span>
-                    <span className="elearning-card-rating">★ {course.rating}</span>
+                  <div className="smartsell-elearning-card-badges">
+                    <span className="smartsell-elearning-card-level">{course.level}</span>
+                    <span className="smartsell-elearning-card-rating">★ {course.rating}</span>
                   </div>
+                  <div className="smartsell-elearning-card-shine" />
                 </div>
 
-                <div className="elearning-card-content">
-                  <div className="elearning-card-header">
-                    <h4 className="elearning-card-title">{course.title}</h4>
-                    <span className="elearning-card-price">{course.price}</span>
+                <div className="smartsell-elearning-card-content">
+                  <div className="smartsell-elearning-card-header">
+                    <h4 className="smartsell-elearning-card-title">{course.title}</h4>
+                    <span className="smartsell-elearning-card-price">{course.price}</span>
                   </div>
-                  <p className="elearning-card-description">{course.description}</p>
-                  <div className="elearning-card-meta">
-                    <span className="elearning-card-duration">⏱ {course.duration}</span>
-                    <span className="elearning-card-students">👥 {course.students}</span>
+                  <p className="smartsell-elearning-card-description">{course.description}</p>
+                  <div className="smartsell-elearning-card-meta">
+                    <span className="smartsell-elearning-card-duration">⏱ {course.duration}</span>
+                    <span className="smartsell-elearning-card-students">👥 {course.students}</span>
                   </div>
-                  <button className="elearning-card-btn">
+                  <button className="smartsell-elearning-card-btn">
                     <span>Accéder à la formation</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -189,130 +205,170 @@ export default function Elearning(){
         </section>
 
         {/* ===== INSTRUCTEURS ===== */}
-        <section className="elearning-section">
-          <div className="elearning-section-header">
-            <span className="elearning-badge">Experts</span>
-            <h2 className="elearning-section-title">
-              <span className="elearning-title-gradient">Nos formateurs</span>
+        <section className="smartsell-elearning-section">
+          <div className="smartsell-elearning-section-header">
+            <span className="smartsell-elearning-badge smartsell-badge-float">
+              <span className="smartsell-badge-dot" />
+              Experts
+            </span>
+            <h2 className="smartsell-elearning-section-title">
+              <span className="smartsell-elearning-title-gradient">Nos formateurs</span>
             </h2>
-            <p className="elearning-section-subtitle">
+            <p className="smartsell-elearning-section-subtitle">
               Apprenez avec les meilleurs experts de leur domaine.
             </p>
+            <div className="smartsell-elearning-header-decoration">
+              <span className="smartsell-elearning-deco-line" />
+              <span className="smartsell-elearning-deco-diamond">◆</span>
+              <span className="smartsell-elearning-deco-line" />
+            </div>
           </div>
 
-          <div className="elearning-instructors-grid">
+          <div className="smartsell-elearning-instructors-grid">
             {instructors.map((instructor, i) => (
               <div 
                 key={i} 
-                className="elearning-instructor-card"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                className="smartsell-elearning-instructor-card"
+                style={{ '--smartsell-instructor-delay': `${i * 0.1}s` }}
               >
-                <div className="elearning-instructor-image-wrapper">
+                <div className="smartsell-elearning-instructor-image-wrapper">
                   <img 
                     src={instructor.image} 
                     alt={instructor.name}
-                    className="elearning-instructor-image"
+                    className="smartsell-elearning-instructor-image"
                     loading="lazy"
                   />
+                  <div className="smartsell-elearning-instructor-ring" />
                 </div>
-                <h4 className="elearning-instructor-name">{instructor.name}</h4>
-                <p className="elearning-instructor-role">{instructor.role}</p>
+                <h4 className="smartsell-elearning-instructor-name">{instructor.name}</h4>
+                <p className="smartsell-elearning-instructor-role">{instructor.role}</p>
+                <div className="smartsell-elearning-instructor-glow" />
               </div>
             ))}
           </div>
         </section>
 
         {/* ===== POURQUOI NOUS ===== */}
-        <section className="elearning-section">
-          <div className="elearning-section-header">
-            <span className="elearning-badge">Pourquoi nous</span>
-            <h2 className="elearning-section-title">
-              <span className="elearning-title-gradient">Une approche unique</span>
+        <section className="smartsell-elearning-section">
+          <div className="smartsell-elearning-section-header">
+            <span className="smartsell-elearning-badge smartsell-badge-float">
+              <span className="smartsell-badge-dot" />
+              Pourquoi nous
+            </span>
+            <h2 className="smartsell-elearning-section-title">
+              <span className="smartsell-elearning-title-gradient">Une approche unique</span>
             </h2>
-            <p className="elearning-section-subtitle">
+            <p className="smartsell-elearning-section-subtitle">
               Des formations qui allient théorie et pratique pour des résultats immédiats.
             </p>
+            <div className="smartsell-elearning-header-decoration">
+              <span className="smartsell-elearning-deco-line" />
+              <span className="smartsell-elearning-deco-diamond">◆</span>
+              <span className="smartsell-elearning-deco-line" />
+            </div>
           </div>
 
-          <div className="elearning-features-grid">
-            <div className="elearning-feature-card">
-              <div className="elearning-feature-icon-wrapper">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="smartsell-elearning-features-grid">
+            <div className="smartsell-elearning-feature-card">
+              <div className="smartsell-elearning-feature-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 6V4M12 6v2M12 6h8M12 6H4"/>
                   <path d="M4 10h16"/>
                   <path d="M4 14h16"/>
                   <path d="M4 18h16"/>
                 </svg>
               </div>
-              <h3 className="elearning-feature-title">Contenu interactif</h3>
-              <p className="elearning-feature-description">Vidéos, quiz, exercices pratiques et projets concrets pour une apprentissage actif.</p>
+              <h3 className="smartsell-elearning-feature-title">Contenu interactif</h3>
+              <p className="smartsell-elearning-feature-description">Vidéos, quiz, exercices pratiques et projets concrets pour un apprentissage actif.</p>
             </div>
 
-            <div className="elearning-feature-card">
-              <div className="elearning-feature-icon-wrapper">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="smartsell-elearning-feature-card">
+              <div className="smartsell-elearning-feature-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                   <path d="M2 17l10 5 10-5"/>
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h3 className="elearning-feature-title">Formats courts</h3>
-              <p className="elearning-feature-description">Des modules de 1 à 3 heures pour apprendre efficacement sans perdre de temps.</p>
+              <h3 className="smartsell-elearning-feature-title">Formats courts</h3>
+              <p className="smartsell-elearning-feature-description">Des modules de 1 à 3 heures pour apprendre efficacement sans perdre de temps.</p>
             </div>
 
-            <div className="elearning-feature-card">
-              <div className="elearning-feature-icon-wrapper">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="smartsell-elearning-feature-card">
+              <div className="smartsell-elearning-feature-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
               </div>
-              <h3 className="elearning-feature-title">Support coaching</h3>
-              <p className="elearning-feature-description">Accès à une communauté et à des sessions de coaching pour transformer vos compétences.</p>
+              <h3 className="smartsell-elearning-feature-title">Support coaching</h3>
+              <p className="smartsell-elearning-feature-description">Accès à une communauté et à des sessions de coaching pour transformer vos compétences.</p>
             </div>
           </div>
         </section>
 
         {/* ===== CTA FINAL ===== */}
-        <section className="elearning-cta-section">
-          <div className="elearning-cta-content">
-            <h2 className="elearning-cta-title">
-              <span className="elearning-title-gradient">Prêt à passer au niveau supérieur ?</span>
+        <section className="smartsell-elearning-cta-section">
+          <div className="smartsell-elearning-cta-particles">
+            {[...Array(8)].map((_, i) => (
+              <div 
+                key={i} 
+                className="smartsell-elearning-cta-particle" 
+                style={{ 
+                  '--smartsell-px': `${Math.random() * 100}%`,
+                  '--smartsell-py': `${Math.random() * 100}%`,
+                  '--smartsell-delay': `${Math.random() * 3}s`,
+                  '--smartsell-size': `${3 + Math.random() * 4}px`
+                }} 
+              />
+            ))}
+          </div>
+          
+          <div className="smartsell-elearning-cta-content">
+            <h2 className="smartsell-elearning-cta-title">
+              <span className="smartsell-elearning-title-gradient">Prêt à passer au niveau supérieur ?</span>
             </h2>
-            <p className="elearning-cta-description">
+            <p className="smartsell-elearning-cta-description">
               Rejoignez plus de 8 700 étudiants qui ont déjà transformé leur carrière avec nos formations.
             </p>
-            <div className="elearning-cta-buttons">
-              <button className="elearning-cta-primary">
+            <div className="smartsell-elearning-cta-buttons">
+              <button className="smartsell-elearning-cta-primary">
                 <span>Commencer maintenant</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </button>
-              <button className="elearning-cta-secondary">
+              <button className="smartsell-elearning-cta-secondary">
                 <span>Voir les offres</span>
               </button>
+            </div>
+            <div className="smartsell-elearning-cta-trust">
+              <span className="smartsell-elearning-trust-item">✓ Accès illimité</span>
+              <span className="smartsell-elearning-trust-dot">•</span>
+              <span className="smartsell-elearning-trust-item">✓ Certificat inclus</span>
+              <span className="smartsell-elearning-trust-dot">•</span>
+              <span className="smartsell-elearning-trust-item">✓ Support 7/7</span>
             </div>
           </div>
         </section>
 
         {/* ===== MODAL VIDÉO ===== */}
         {activeVideo && (
-          <div className="elearning-video-modal" onClick={() => setActiveVideo(null)}>
-            <div className="elearning-video-modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="elearning-video-close" onClick={() => setActiveVideo(null)}>
+          <div className="smartsell-elearning-video-modal" onClick={() => setActiveVideo(null)}>
+            <div className="smartsell-elearning-video-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="smartsell-elearning-video-close" onClick={() => setActiveVideo(null)}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18"/>
                   <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
               </button>
-              <div className="elearning-video-wrapper">
+              <div className="smartsell-elearning-video-wrapper">
                 <iframe
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                   title="Video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className="elearning-video-iframe"
+                  className="smartsell-elearning-video-iframe"
                 />
               </div>
             </div>

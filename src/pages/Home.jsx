@@ -1,16 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { 
   TrendingUp, 
-  FileText, 
-  Layers, 
-  PenTool, 
-  Users, 
-  Monitor, 
-  Radio, 
-  Play, 
-  ArrowRight, 
-  PhoneCall, 
-  Building2, 
   Sparkles,
   CheckCircle2,
   Star,
@@ -19,7 +9,6 @@ import {
   Crown,
   MessageCircle,
   Mail,
-  MapPin,
   Clock,
   Heart,
   Target,
@@ -27,278 +16,280 @@ import {
   Palette,
   Code2,
   Megaphone,
-  Smartphone
+  Smartphone,
+  ArrowRight,
+  Play,
+  PhoneCall,
+  Building2,
+  Users,
+  Rocket,
+  Shield,
+  ThumbsUp,
+  Coffee,
+  Brain,
+  Layers,
+  PenTool,
+  Monitor,
+  Radio,
+  Film,
+  Camera,
+  Music,
+  BookOpen,
+  GraduationCap,
+  Briefcase,
+  BarChart
 } from 'lucide-react';
-import Hero from '../components/Hero';
+import './Home.css';
 
 // ==========================================
 // DONNÉES STATIQUES
 // ==========================================
 const services = [
-  { title: 'Stratégie', icon: <Target size={26} />, description: "Vision globale et plan d'action sur mesure", progress: 98 },
-  { title: 'Création de Contenu', icon: <Lightbulb size={26} />, description: 'Storytelling et copywriting percutants', progress: 95 },
-  { title: "Marketing d'Influence", icon: <Megaphone size={26} />, description: 'Amplification et communauté engagée', progress: 92 },
-  { title: 'Design & Branding', icon: <Palette size={26} />, description: 'Identité visuelle mémorable', progress: 96 },
-  { title: 'Web & Digital', icon: <Code2 size={26} />, description: 'Expériences digitales immersives', progress: 94 },
-  { title: 'Studio Creative', icon: <Smartphone size={26} />, description: 'Production créative et technique', progress: 90 }
+  { 
+    title: 'Stratégie', 
+    icon: <Target size={26} />, 
+    description: "Vision globale et plan d'action sur mesure pour votre marque",
+    progress: 98,
+    color: '#fbbf24',
+    tags: ['Vision', 'Croissance', 'Innovation']
+  },
+  { 
+    title: 'Création de Contenu', 
+    icon: <Lightbulb size={26} />, 
+    description: 'Storytelling et copywriting percutants qui captivent',
+    progress: 95,
+    color: '#f59e0b',
+    tags: ['Storytelling', 'Copywriting', 'Engagement']
+  },
+  { 
+    title: "Marketing d'Influence", 
+    icon: <Megaphone size={26} />, 
+    description: 'Amplification et communauté engagée pour votre marque',
+    progress: 92,
+    color: '#ec4899',
+    tags: ['Influence', 'Community', 'Amplification']
+  },
+  { 
+    title: 'Design & Branding', 
+    icon: <Palette size={26} />, 
+    description: 'Identité visuelle mémorable et impactante',
+    progress: 96,
+    color: '#8b5cf6',
+    tags: ['Branding', 'Identité', 'Créativité']
+  },
+  { 
+    title: 'Web & Digital', 
+    icon: <Code2 size={26} />, 
+    description: 'Expériences digitales immersives et performantes',
+    progress: 94,
+    color: '#3b82f6',
+    tags: ['Web', 'Digital', 'Performance']
+  },
+  { 
+    title: 'Studio Creative', 
+    icon: <Smartphone size={26} />, 
+    description: 'Production créative et technique de haute qualité',
+    progress: 90,
+    color: '#06b6d4',
+    tags: ['Production', 'Créativité', 'Technique']
+  }
 ];
 
 const projects = [
-  { title: 'Luxury Brand Evolution', description: "Refonte complète de l'identité visuelle et stratégie digitale", metrics: '+67% engagement', time: '4 semaines', category: 'Branding' },
-  { title: 'Tech Startup Launch', description: "Campagne d'influence et lancement produit viral", metrics: '2M vues', time: '6 semaines', category: 'Influence' },
-  { title: 'Retail Experience', description: "Design d'expérience client omnicanal", metrics: '+42% conversion', time: '8 semaines', category: 'Design' },
-  { title: 'Media Campaign', description: 'Production audiovisuelle et stratégie média', metrics: '+89% reach', time: '5 semaines', category: 'Studio' }
+  { 
+    title: 'Luxury Brand Evolution', 
+    description: "Refonte complète de l'identité visuelle et stratégie digitale", 
+    metrics: '+67% engagement', 
+    time: '4 semaines', 
+    category: 'Branding',
+    bg: 'linear-gradient(135deg, #6a2b85, #9a5bb8)'
+  },
+  { 
+    title: 'Tech Startup Launch', 
+    description: "Campagne d'influence et lancement produit viral", 
+    metrics: '2M vues', 
+    time: '6 semaines', 
+    category: 'Influence',
+    bg: 'linear-gradient(135deg, #3b82f6, #06b6d4)'
+  },
+  { 
+    title: 'Retail Experience', 
+    description: "Design d'expérience client omnicanal innovant", 
+    metrics: '+42% conversion', 
+    time: '8 semaines', 
+    category: 'Design',
+    bg: 'linear-gradient(135deg, #ec4899, #8b5cf6)'
+  },
+  { 
+    title: 'Media Campaign', 
+    description: 'Production audiovisuelle et stratégie média globale', 
+    metrics: '+89% reach', 
+    time: '5 semaines', 
+    category: 'Studio',
+    bg: 'linear-gradient(135deg, #f59e0b, #fbbf24)'
+  }
 ];
 
 const testimonials = [
-  { name: 'Sophie Martin', role: 'Directrice Marketing, LVMH', content: 'Une équipe exceptionnelle qui a su transformer notre vision en réalité. Résultats au-delà de nos attentes !', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop', rating: 5 },
-  { name: 'Thomas Bernard', role: 'CEO, TechStart', content: 'La meilleure agence avec laquelle nous ayons travaillé. Créativité, professionnalisme et résultats concrets.', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop', rating: 5 },
-  { name: 'Isabelle Dubois', role: "Brand Director, L'Oréal", content: 'Un partnership stratégique qui a propulsé notre marque au niveau supérieur. Je recommande vivement !', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop', rating: 5 }
+  { 
+    name: 'Sophie Martin', 
+    role: 'Directrice Marketing, LVMH', 
+    content: 'Une équipe exceptionnelle qui a su transformer notre vision en réalité. Les résultats ont dépassé toutes nos attentes.', 
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&fm=webp', 
+    rating: 5,
+    company: 'LVMH'
+  },
+  { 
+    name: 'Thomas Bernard', 
+    role: 'CEO, TechStart', 
+    content: 'La meilleure agence avec laquelle nous ayons travaillé. Créativité, professionnalisme et résultats concrets.', 
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&fm=webp', 
+    rating: 5,
+    company: 'TechStart'
+  },
+  { 
+    name: 'Isabelle Dubois', 
+    role: "Brand Director, L'Oréal", 
+    content: 'Un partnership stratégique qui a propulsé notre marque au niveau supérieur. Je recommande vivement.', 
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&fm=webp', 
+    rating: 5,
+    company: "L'Oréal"
+  }
 ];
 
 const stats = [
-  { value: '150+', label: 'Projets réalisés', icon: <Award size={24} />, color: '#fbbf24', trend: '+25%' },
-  { value: '98%', label: 'Clients satisfaits', icon: <Heart size={24} />, color: '#f59e0b', trend: '+12%' },
-  { value: '45+', label: 'Experts créatifs', icon: <Users size={24} />, color: '#ec4899', trend: '+8%' },
-  { value: '12+', label: 'Prix remportés', icon: <Crown size={24} />, color: '#8b5cf6', trend: '+3' }
+  { value: '150+', label: 'Projets réalisés', icon: Award, color: '#fbbf24', trend: '+25%', bg: 'rgba(251,191,36,0.1)' },
+  { value: '98%', label: 'Clients satisfaits', icon: Heart, color: '#f59e0b', trend: '+12%', bg: 'rgba(245,158,11,0.1)' },
+  { value: '45+', label: 'Experts créatifs', icon: Users, color: '#ec4899', trend: '+8%', bg: 'rgba(236,72,153,0.1)' },
+  { value: '12+', label: 'Prix remportés', icon: Crown, color: '#8b5cf6', trend: '+3', bg: 'rgba(139,92,246,0.1)' }
 ];
 
 // ==========================================
 // COMPOSANTS ENFANTS
 // ==========================================
 
-function NeuralBackground() {
-  const canvasRef = useRef(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  
+// Hero avec slogan "Avec vous de bout en bout"
+function SmartHero() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    let animationId;
-    let nodes = [];
-    let particles = [];
-    
-    const NODE_COUNT = 80;
-    const CONNECTION_DISTANCE = 180;
-    const MOUSE_RADIUS = 200;
-    
-    const resizeCanvas = () => {
-      if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    };
-    
-    class NeuralNode {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.originalX = x;
-        this.originalY = y;
-        this.vx = 0;
-        this.vy = 0;
-        this.radius = Math.random() * 2.5 + 1.5;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-        this.pulseSpeed = 0.02 + Math.random() * 0.03;
-        this.color = `hsla(${45 + Math.random() * 15}, 80%, 60%, 0.5)`;
-        this.glowColor = `hsla(${45 + Math.random() * 15}, 80%, 65%, 0.3)`;
-      }
-      
-      update(mouseX, mouseY) {
-        const dx = this.x - mouseX;
-        const dy = this.y - mouseY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < MOUSE_RADIUS) {
-          const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS;
-          const angle = Math.atan2(dy, dx);
-          const pushX = Math.cos(angle) * force * 2.5;
-          const pushY = Math.sin(angle) * force * 2.5;
-          this.vx += pushX;
-          this.vy += pushY;
-        }
-        
-        this.vx += (this.originalX - this.x) * 0.02;
-        this.vy += (this.originalY - this.y) * 0.02;
-        this.vx *= 0.94;
-        this.vy *= 0.94;
-        this.x += this.vx;
-        this.y += this.vy;
-        this.pulsePhase += this.pulseSpeed;
-      }
-      
-      draw(ctx) {
-        const pulse = Math.sin(this.pulsePhase) * 0.3 + 0.7;
-        const glowRadius = this.radius * (1 + pulse * 0.5);
-        
-        ctx.save();
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = this.glowColor;
-        
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, glowRadius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius * 0.6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-        ctx.fill();
-        
-        ctx.restore();
-      }
-    }
-    
-    const initNodes = () => {
-      nodes = [];
-      const cols = Math.ceil(Math.sqrt(NODE_COUNT));
-      const rows = Math.ceil(NODE_COUNT / cols);
-      const spacingX = canvas.width / (cols + 1);
-      const spacingY = canvas.height / (rows + 1);
-      
-      for (let i = 0; i < NODE_COUNT; i++) {
-        const col = i % cols;
-        const row = Math.floor(i / cols);
-        const x = spacingX * (col + 1) + (Math.random() - 0.5) * 60;
-        const y = spacingY * (row + 1) + (Math.random() - 0.5) * 60;
-        nodes.push(new NeuralNode(x, y));
-      }
-    };
-    
-    const drawConnections = () => {
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < CONNECTION_DISTANCE) {
-            const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.12;
-            const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-            gradient.addColorStop(0, `rgba(251, 191, 36, ${opacity})`);
-            gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity})`);
-            
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1;
-            ctx.shadowBlur = 2;
-            ctx.shadowColor = 'rgba(251, 191, 36, 0.2)';
-            ctx.stroke();
-          }
-        }
-      }
-    };
-    
-    for (let i = 0; i < 100; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 0.5,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        alpha: Math.random() * 0.3 + 0.1,
-        color: `rgba(251, 191, 36, ${Math.random() * 0.2})`
-      });
-    }
-    
-    const animateParticles = () => {
-      for (let p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      }
-    };
-    
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, 'rgba(10, 1, 24, 0.96)');
-      gradient.addColorStop(0.3, 'rgba(20, 8, 40, 0.94)');
-      gradient.addColorStop(0.7, 'rgba(25, 10, 45, 0.94)');
-      gradient.addColorStop(1, 'rgba(10, 1, 24, 0.96)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.shadowBlur = 0;
-      
-      for (let node of nodes) {
-        node.update(mouseRef.current.x, mouseRef.current.y);
-      }
-      
-      drawConnections();
-      animateParticles();
-      
-      for (let node of nodes) {
-        node.draw(ctx);
-      }
-      
-      const radialGradient = ctx.createRadialGradient(
-        mouseRef.current.x, mouseRef.current.y, 0,
-        mouseRef.current.x, mouseRef.current.y, 250
-      );
-      radialGradient.addColorStop(0, 'rgba(251, 191, 36, 0.06)');
-      radialGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.03)');
-      radialGradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = radialGradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      animationId = requestAnimationFrame(animate);
-    };
-    
     const handleMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-    
-    const handleTouchMove = (e) => {
-      if (e.touches[0]) {
-        mouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        setMousePos({ x, y });
       }
     };
-    
-    resizeCanvas();
-    initNodes();
-    
-    window.addEventListener('resize', resizeCanvas);
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove);
-    
-    animate();
-    
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleTouchMove);
-    };
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-  
-  return <canvas ref={canvasRef} className="smart-neural-canvas" />;
+
+  return (
+    <section className="smart-hero-premium" ref={heroRef}>
+      {/* Background avec image et dégradé renforcé */}
+      <div className="smart-hero-bg-premium">
+        <div className="smart-hero-image-wrapper-premium">
+          <img 
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80&fm=webp" 
+            alt="Hero Background" 
+            className="smart-hero-image-premium"
+            loading="eager"
+            fetchpriority="high"
+          />
+          {/* Dégradé renforcé sur l'image */}
+          <div className="smart-hero-image-gradient-premium"></div>
+        </div>
+        
+        {/* Effets de lumière */}
+        <div className="smart-hero-light-premium" style={{ transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)` }} />
+        <div className="smart-hero-light-premium-2" style={{ transform: `translate(${-mousePos.x * 15}px, ${-mousePos.y * 15}px)` }} />
+      </div>
+
+      {/* Contenu Hero */}
+      <div className="smart-hero-content-premium">
+        <div className="smart-hero-badge-premium">
+          <Sparkles size={14} />
+          <span>Agence créative depuis 2020</span>
+          <span className="smart-hero-badge-dot-premium"></span>
+          <span className="smart-hero-badge-rating-premium">★ 4.9/5</span>
+        </div>
+
+        <h1 className="smart-hero-title-premium">
+          <span className="smart-hero-title-line-premium">Avec vous</span>
+          <span className="smart-hero-title-highlight-premium">de bout en bout</span>
+        </h1>
+
+        <p className="smart-hero-subtitle-premium">
+          Stratégie, création et innovation au service de votre marque. 
+          Nous transformons vos idées en résultats concrets.
+        </p>
+
+        <div className="smart-hero-actions-premium">
+          <button className="smart-hero-btn-primary-premium">
+            <Zap size={18} />
+            Commencer un projet
+            <ArrowRight size={16} />
+          </button>
+          <button className="smart-hero-btn-secondary-premium">
+            <Play size={18} />
+            Nos services
+          </button>
+        </div>
+
+        <div className="smart-hero-stats-premium">
+          <div className="smart-hero-stat-premium">
+            <span className="smart-hero-stat-number-premium">150+</span>
+            <span className="smart-hero-stat-label-premium">Projets</span>
+          </div>
+          <div className="smart-hero-stat-divider-premium"></div>
+          <div className="smart-hero-stat-premium">
+            <span className="smart-hero-stat-number-premium">98%</span>
+            <span className="smart-hero-stat-label-premium">Satisfaction</span>
+          </div>
+          <div className="smart-hero-stat-divider-premium"></div>
+          <div className="smart-hero-stat-premium">
+            <span className="smart-hero-stat-number-premium">45+</span>
+            <span className="smart-hero-stat-label-premium">Experts</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Éléments flottants */}
+      <div className="smart-hero-float-premium smart-hero-float-1">
+        <div className="smart-float-card-premium">
+          <div className="smart-float-icon-premium"><TrendingUp size={16} /></div>
+          <div>
+            <span className="smart-float-value-premium">+67%</span>
+            <span className="smart-float-label-premium">engagement</span>
+          </div>
+        </div>
+      </div>
+      <div className="smart-hero-float-premium smart-hero-float-2">
+        <div className="smart-float-card-premium">
+          <div className="smart-float-icon-premium"><Award size={16} /></div>
+          <div>
+            <span className="smart-float-value-premium">12</span>
+            <span className="smart-float-label-premium">prix</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
+// Marquee
 function SmartMarquee() {
   const items = ["Stratégie", "Création", "Web", "Shooting", "Podcast", "Influence", "E-learning", "Branding", "Campagnes", "Performance"];
   return (
-    <div className="smart-marquee-wrapper">
-      <div className="smart-marquee-container">
-        <div className="smart-marquee-track">
-          {[...items, ...items].map((t, i) => (
-            <span key={i} className="smart-marquee-item">
-              <span className={i % 2 ? "smart-marquee-text-gradient" : "smart-marquee-text"}>{t}</span>
-              <Sparkles className="smart-marquee-icon" />
+    <div className="smart-marquee-premium">
+      <div className="smart-marquee-container-premium">
+        <div className="smart-marquee-track-premium">
+          {[...items, ...items, ...items].map((t, i) => (
+            <span key={i} className="smart-marquee-item-premium">
+              <span className={i % 2 ? "smart-marquee-text-gradient-premium" : "smart-marquee-text-premium"}>{t}</span>
+              <Sparkles className="smart-marquee-icon-premium" size={14} />
             </span>
           ))}
         </div>
@@ -307,193 +298,159 @@ function SmartMarquee() {
   );
 }
 
+// Service Card
+function SmartServiceCard({ service, index }) {
+  return (
+    <div className="smart-service-card-premium" style={{ animationDelay: `${index * 0.1}s` }}>
+      <div className="smart-service-card-glow-premium" style={{ background: `radial-gradient(circle at 50% 0%, ${service.color}40, transparent 70%)` }} />
+      <div className="smart-service-icon-wrapper-premium" style={{ color: service.color }}>
+        <div className="smart-service-icon-bg-premium" style={{ background: `${service.color}20` }} />
+        {service.icon}
+        <div className="smart-service-icon-pulse-premium" style={{ borderColor: `${service.color}40` }} />
+      </div>
+      <h3 className="smart-service-title-premium">{service.title}</h3>
+      <p className="smart-service-description-premium">{service.description}</p>
+      <div className="smart-service-tags-premium">
+        {service.tags.map((tag, i) => (
+          <span key={i} className="smart-service-tag-premium">{tag}</span>
+        ))}
+      </div>
+      <div className="smart-service-progress-premium">
+        <div className="smart-service-progress-bar-premium" style={{ width: `${service.progress}%`, background: service.color }} />
+      </div>
+      <div className="smart-service-stats-premium">
+        <span className="smart-stat-number-premium" style={{ color: service.color }}>{service.progress}%</span>
+        <span className="smart-stat-label-premium">taux de succès</span>
+      </div>
+    </div>
+  );
+}
+
+// Project Card
 function SmartProjectCard({ project, index }) {
   const images = [
-    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop'
+    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop&fm=webp',
+    'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop&fm=webp',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&fm=webp',
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&fm=webp'
   ];
-  
+
   return (
-    <div className="smart-project-card" style={{ '--card-index': index }}>
-      <div className="smart-project-image-container">
-        <img src={images[index % images.length]} alt={project.title} className="smart-project-image" />
-        <div className="smart-project-overlay">
-          <span className="smart-project-category">{project.category}</span>
+    <div className="smart-project-card-premium" style={{ animationDelay: `${index * 0.1}s` }}>
+      <div className="smart-project-image-container-premium">
+        <img src={images[index % images.length]} alt={project.title} className="smart-project-image-premium" loading="lazy" />
+        <div className="smart-project-overlay-premium" style={{ background: project.bg }}>
+          <span className="smart-project-category-premium">{project.category}</span>
         </div>
-        <div className="smart-project-shine"></div>
+        <div className="smart-project-shine-premium"></div>
       </div>
-      <div className="smart-project-content">
-        <h4 className="smart-project-title">{project.title}</h4>
-        <p className="smart-project-description">{project.description}</p>
-        <div className="smart-project-stats">
-          <div className="smart-stat-badge">
+      <div className="smart-project-content-premium">
+        <div className="smart-project-header-premium">
+          <h4 className="smart-project-title-premium">{project.title}</h4>
+          <div className="smart-project-metrics-premium">
             <TrendingUp size={14} />
             <span>{project.metrics}</span>
           </div>
-          <div className="smart-stat-badge">
+        </div>
+        <p className="smart-project-description-premium">{project.description}</p>
+        <div className="smart-project-footer-premium">
+          <div className="smart-project-time-premium">
             <Clock size={14} />
             <span>{project.time}</span>
           </div>
+          <button className="smart-project-btn-premium">
+            Voir le projet <ArrowRight size={16} />
+          </button>
         </div>
-        <button className="smart-project-btn">
-          Voir le projet <ArrowRight size={16} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function SmartServiceCard({ service, index }) {
-  const icons = {
-    'Stratégie': <Target size={26} />,
-    'Création de Contenu': <Lightbulb size={26} />,
-    "Marketing d'Influence": <Megaphone size={26} />,
-    'Design & Branding': <Palette size={26} />,
-    'Web & Digital': <Code2 size={26} />,
-    'Studio Creative': <Smartphone size={26} />
-  };
-  
-  return (
-    <div className="smart-service-card" style={{ '--card-index': index }}>
-      <div className="smart-service-icon-wrapper">
-        <div className="smart-service-icon-bg"></div>
-        {icons[service.title] || service.icon}
-        <div className="smart-service-icon-pulse"></div>
-      </div>
-      <h3 className="smart-service-title">{service.title}</h3>
-      <p className="smart-service-description">{service.description}</p>
-      <div className="smart-service-progress">
-        <div className="smart-service-progress-bar" style={{ width: `${service.progress}%` }}></div>
-      </div>
-      <div className="smart-service-stats">
-        <span className="smart-stat-number">{service.progress}+</span>
-        <span className="smart-stat-label">projets réussis</span>
       </div>
     </div>
   );
 }
 
 // ==========================================
-// COMPOSANT PRINCIPAL EXPORTÉ
+// COMPOSANT PRINCIPAL
 // ==========================================
-export default function SmartSell() {
+export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [hoveredStat, setHoveredStat] = useState(null);
-  const cursorRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('smart-visible');
-            if (entry.target.classList.contains('smart-cta-wrapper')) {
-              createParticles(entry.target);
-            }
+            entry.target.classList.add('smart-visible-premium');
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -80px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const elements = document.querySelectorAll('.smart-reveal');
+    const elements = document.querySelectorAll('.smart-reveal-premium');
     elements.forEach((el) => observer.observe(el));
 
-    const handleMouseMove = (e) => {
-      if (cursorRef.current && window.innerWidth > 768) {
-        cursorRef.current.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    const testimonialInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
     return () => {
       elements.forEach((el) => observer.unobserve(el));
-      window.removeEventListener('mousemove', handleMouseMove);
-      clearInterval(testimonialInterval);
+      clearInterval(interval);
     };
   }, []);
 
-  const createParticles = (element) => {
-    const particles = element.querySelectorAll('.smart-particle');
-    particles.forEach(particle => particle.remove());
-    
-    for (let i = 0; i < 40; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'smart-particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 2 + 's';
-      particle.style.animationDuration = Math.random() * 3 + 2 + 's';
-      particle.style.width = Math.random() * 6 + 2 + 'px';
-      particle.style.height = particle.style.width;
-      element.appendChild(particle);
-      
-      setTimeout(() => {
-        if (element.contains(particle)) {
-          particle.remove();
-        }
-      }, 5000);
-    }
-  };
-
   return (
-    <>
-      <NeuralBackground />
-      
-      <div ref={cursorRef} className="smart-custom-cursor">
-        <div className="smart-cursor-dot"></div>
-        <div className="smart-cursor-ring"></div>
-      </div>
-      
-      <Hero />
+    <div className="smartsell-home-premium">
+      {/* Hero avec slogan */}
+      <SmartHero />
 
+      {/* Marquee */}
       <SmartMarquee />
 
-      <div className="smart-container">
+      <div className="smart-container-premium">
         {/* Stats Section */}
-        <div className="smart-stats-grid smart-reveal">
-          {stats.map((stat, i) => (
-            <div 
-              key={i} 
-              className="smart-stat-card" 
-              style={{ '--card-index': i, '--stat-color': stat.color }}
-              onMouseEnter={() => setHoveredStat(i)}
-              onMouseLeave={() => setHoveredStat(null)}
-            >
-              <div className="smart-stat-icon" style={{ background: `linear-gradient(135deg, ${stat.color}, ${stat.color}dd)` }}>
-                {stat.icon}
-              </div>
-              <div className="smart-stat-value">
-                <span className="smart-stat-number">{stat.value}</span>
-                <span className="smart-stat-trend">{stat.trend}</span>
-              </div>
-              <div className="smart-stat-label">{stat.label}</div>
-              <div className="smart-stat-progress" style={{ '--progress': `${(i + 1) * 25}%` }}></div>
-              {hoveredStat === i && <div className="smart-stat-glow" style={{ background: `radial-gradient(circle, ${stat.color}40, transparent)` }}></div>}
-            </div>
-          ))}
-        </div>
+        <section className="smart-section-premium">
+          <div className="smart-stats-grid-premium">
+            {stats.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <div 
+                  key={i} 
+                  className="smart-stat-card-premium smart-reveal-premium" 
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                  onMouseEnter={() => setHoveredStat(i)}
+                  onMouseLeave={() => setHoveredStat(null)}
+                >
+                  <div className="smart-stat-icon-premium" style={{ background: stat.bg, color: stat.color }}>
+                    <Icon size={24} />
+                  </div>
+                  <div className="smart-stat-value-premium">
+                    <span className="smart-stat-number-premium" style={{ color: stat.color }}>{stat.value}</span>
+                    <span className="smart-stat-trend-premium">{stat.trend}</span>
+                  </div>
+                  <div className="smart-stat-label-premium">{stat.label}</div>
+                  {hoveredStat === i && <div className="smart-stat-glow-premium" style={{ background: `radial-gradient(circle, ${stat.color}40, transparent)` }} />}
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Services Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-section-header">
-            <span className="smart-badge">
-              <Sparkles size={12} /> Notre expertise
-            </span>
-            <h2 className="smart-section-title">
-              Des <span className="smart-gradient-text">compétences</span> qui font la différence
+        <section className="smart-section-premium">
+          <div className="smart-section-header-premium smart-reveal-premium">
+            <div className="smart-section-badge-premium">
+              <Sparkles size={14} /> Notre expertise
+            </div>
+            <h2 className="smart-section-title-premium">
+              Des <span className="smart-gradient-text-premium">compétences</span> qui font la différence
             </h2>
-            <p className="smart-section-subtitle">6 domaines d'expertise pour transformer votre vision en succès</p>
+            <p className="smart-section-subtitle-premium">
+              6 domaines d'expertise pour transformer votre vision en succès
+            </p>
           </div>
           
-          <div className="smart-services-grid">
+          <div className="smart-services-grid-premium">
             {services.map((service, i) => (
               <SmartServiceCard key={i} service={service} index={i} />
             ))}
@@ -501,18 +458,20 @@ export default function SmartSell() {
         </section>
 
         {/* Projects Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-section-header">
-            <span className="smart-badge">
-              <TrendingUp size={12} /> Portfolio
-            </span>
-            <h2 className="smart-section-title">
-              Nos <span className="smart-gradient-text">réalisations</span> récentes
+        <section className="smart-section-premium">
+          <div className="smart-section-header-premium smart-reveal-premium">
+            <div className="smart-section-badge-premium">
+              <TrendingUp size={14} /> Portfolio
+            </div>
+            <h2 className="smart-section-title-premium">
+              Nos <span className="smart-gradient-text-premium">réalisations</span> récentes
             </h2>
-            <p className="smart-section-subtitle">Découvrez nos projets les plus marquants</p>
+            <p className="smart-section-subtitle-premium">
+              Découvrez nos projets les plus marquants
+            </p>
           </div>
 
-          <div className="smart-projects-grid">
+          <div className="smart-projects-grid-premium">
             {projects.map((project, i) => (
               <SmartProjectCard key={i} project={project} index={i} />
             ))}
@@ -520,61 +479,69 @@ export default function SmartSell() {
         </section>
 
         {/* Showreel Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-showreel">
-            <div className="smart-showreel-content">
-              <span className="smart-badge">🎬 Showreel 2026</span>
-              <h2 className="smart-showreel-title">Découvrez notre <span className="smart-gradient-text">créativité</span> en action</h2>
-              <button className="smart-play-btn-large">
-                <div className="smart-play-pulse"></div>
+        <section className="smart-section-premium smart-reveal-premium">
+          <div className="smart-showreel-premium">
+            <div className="smart-showreel-content-premium">
+              <div className="smart-showreel-badge-premium">🎬 Showreel 2026</div>
+              <h2 className="smart-showreel-title-premium">
+                Découvrez notre <span className="smart-gradient-text-premium">créativité</span>
+              </h2>
+              <button className="smart-play-btn-premium">
+                <div className="smart-play-pulse-premium"></div>
                 <Play size={28} fill="currentColor" />
               </button>
             </div>
-            <div className="smart-showreel-background">
-              <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&h=600&fit=crop" alt="Showreel" />
-              <div className="smart-showreel-overlay"></div>
+            <div className="smart-showreel-background-premium">
+              <img 
+                src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&h=600&fit=crop&fm=webp" 
+                alt="Showreel" 
+                loading="lazy"
+              />
+              <div className="smart-showreel-overlay-premium"></div>
             </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-section-header">
-            <span className="smart-badge">
-              <MessageCircle size={12} /> Témoignages
-            </span>
-            <h2 className="smart-section-title">
-              Ce que nos <span className="smart-gradient-text">clients</span> disent
+        <section className="smart-section-premium">
+          <div className="smart-section-header-premium smart-reveal-premium">
+            <div className="smart-section-badge-premium">
+              <MessageCircle size={14} /> Témoignages
+            </div>
+            <h2 className="smart-section-title-premium">
+              Ce que nos <span className="smart-gradient-text-premium">clients</span> disent
             </h2>
           </div>
 
-          <div className="smart-testimonials">
-            <div className="smart-testimonials-track" style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}>
+          <div className="smart-testimonials-premium smart-reveal-premium">
+            <div className="smart-testimonials-track-premium" style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}>
               {testimonials.map((testimonial, i) => (
-                <div key={i} className="smart-testimonial-card">
-                  <div className="smart-testimonial-image">
-                    <img src={testimonial.image} alt={testimonial.name} />
-                    <div className="smart-testimonial-quote">“</div>
+                <div key={i} className="smart-testimonial-card-premium">
+                  <div className="smart-testimonial-image-premium">
+                    <img src={testimonial.image} alt={testimonial.name} loading="lazy" />
+                    <div className="smart-testimonial-quote-premium">“</div>
+                    <div className="smart-testimonial-company-premium">{testimonial.company}</div>
                   </div>
-                  <div className="smart-testimonial-content">
-                    <div className="smart-testimonial-rating">
+                  <div className="smart-testimonial-content-premium">
+                    <div className="smart-testimonial-rating-premium">
                       {[...Array(testimonial.rating)].map((_, j) => (
                         <Star key={j} size={16} fill="#fbbf24" color="#fbbf24" />
                       ))}
                     </div>
-                    <p className="smart-testimonial-text">"{testimonial.content}"</p>
-                    <h4 className="smart-testimonial-name">{testimonial.name}</h4>
-                    <p className="smart-testimonial-role">{testimonial.role}</p>
+                    <p className="smart-testimonial-text-premium">"{testimonial.content}"</p>
+                    <h4 className="smart-testimonial-name-premium">{testimonial.name}</h4>
+                    <p className="smart-testimonial-role-premium">{testimonial.role}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="smart-testimonials-dots">
+            <div className="smart-testimonials-dots-premium">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  className={`smart-testimonial-dot ${activeTestimonial === i ? 'active' : ''}`}
+                  className={`smart-testimonial-dot-premium ${activeTestimonial === i ? 'active' : ''}`}
                   onClick={() => setActiveTestimonial(i)}
+                  aria-label={`Témoignage ${i + 1}`}
                 />
               ))}
             </div>
@@ -582,124 +549,75 @@ export default function SmartSell() {
         </section>
 
         {/* Partners Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-section-header">
-            <span className="smart-badge">
-              <Building2 size={12} /> Nos partenaires
-            </span>
-            <h2 className="smart-section-title">
-              Ils nous <span className="smart-gradient-text">font confiance</span>
-            </h2>
-          </div>
-
-          <div className="smart-partners-grid">
-            {[
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/LVMH_logo.svg/2560px-LVMH_logo.svg.png',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Nestl%C3%A9.svg/2560px-Nestl%C3%A9.svg.png',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Decathlon_Logo.svg/2560px-Decathlon_Logo.svg.png',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/L%27Or%C3%A9al_logo.svg/2560px-L%27Or%C3%A9al_logo.svg.png'
-            ].map((partner, i) => (
-              <div key={i} className="smart-partner-card">
-                <img src={partner} alt={`Partner ${i + 1}`} className="smart-partner-logo" />
-                <div className="smart-partner-glow"></div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Blog Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-section-header">
-            <span className="smart-badge">
-              <FileText size={12} /> Blog & Insights
-            </span>
-            <h2 className="smart-section-title">
-              Derniers <span className="smart-gradient-text">articles</span>
-            </h2>
-          </div>
-
-          <div className="smart-blog-grid">
-            {[
-              { title: 'Les tendances digitales 2026', desc: 'Découvrez les innovations qui façonneront le marketing demain', date: '15 Jan 2026', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop', readTime: '5 min' },
-              { title: 'Guide du branding moderne', desc: 'Comment créer une identity de marque mémorable', date: '10 Jan 2026', image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop', readTime: '8 min' },
-              { title: "L'avenir du marketing d'influence", desc: 'Stratégies innovantes pour 2026', date: '5 Jan 2026', image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop', readTime: '6 min' }
-            ].map((article, i) => (
-              <div key={i} className="smart-blog-card">
-                <div className="smart-blog-image">
-                  <img src={article.image} alt={article.title} />
-                  <div className="smart-blog-date">{article.date}</div>
-                  <div className="smart-blog-readtime">{article.readTime}</div>
-                </div>
-                <div className="smart-blog-content">
-                  <h4 className="smart-blog-title">{article.title}</h4>
-                  <p className="smart-blog-desc">{article.desc}</p>
-                  <button className="smart-blog-btn">
-                    Lire l'article <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Newsletter Section */}
-        <section className="smart-section smart-reveal">
-          <div className="smart-newsletter">
-            <div className="smart-newsletter-content">
-              <div className="smart-newsletter-icon">
-                <Mail size={32} />
-              </div>
-              <h3>Restez informé des <span className="smart-gradient-text">dernières tendances</span></h3>
-              <p>Recevez nos insights et études de cas exclusives</p>
-              <form className="smart-newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Votre email" required />
-                <button type="submit">
-                  S'abonner <ArrowRight size={16} />
-                </button>
-              </form>
+        <section className="smart-section-premium">
+          <div className="smart-section-header-premium smart-reveal-premium">
+            <div className="smart-section-badge-premium">
+              <Building2 size={14} /> Nos partenaires
             </div>
+            <h2 className="smart-section-title-premium">
+              Ils nous <span className="smart-gradient-text-premium">font confiance</span>
+            </h2>
+          </div>
+
+          <div className="smart-partners-grid-premium smart-reveal-premium">
+            {[
+              { name: 'LVMH', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/LVMH_logo.svg/2560px-LVMH_logo.svg.png' },
+              { name: 'Nestlé', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Nestl%C3%A9.svg/2560px-Nestl%C3%A9.svg.png' },
+              { name: 'Decathlon', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Decathlon_Logo.svg/2560px-Decathlon_Logo.svg.png' },
+              { name: "L'Oréal", logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/L%27Or%C3%A9al_logo.svg/2560px-L%27Or%C3%A9al_logo.svg.png' }
+            ].map((partner, i) => (
+              <div key={i} className="smart-partner-card-premium">
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name} 
+                  className="smart-partner-logo-premium" 
+                  loading="lazy"
+                />
+                <div className="smart-partner-glow-premium"></div>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="smart-cta-wrapper smart-reveal">
+        <section className="smart-cta-wrapper-premium smart-reveal-premium">
           <div className="smart-cta-premium">
-            <div className="smart-cta-bg-effects">
-              <div className="smart-cta-glow-1"></div>
-              <div className="smart-cta-glow-2"></div>
-              <div className="smart-cta-glow-3"></div>
+            <div className="smart-cta-bg-effects-premium">
+              <div className="smart-cta-glow-premium-1"></div>
+              <div className="smart-cta-glow-premium-2"></div>
+              <div className="smart-cta-glow-premium-3"></div>
             </div>
-            <div className="smart-cta-content">
-              <div className="smart-cta-badge">
-                <Sparkles size={14} /> Offre exclusive
+            <div className="smart-cta-content-premium">
+              <div className="smart-cta-badge-premium">
+                <Rocket size={16} /> Offre exclusive
               </div>
-              <h3 className="smart-cta-title">
-                Prêt à <span className="smart-gradient-text">propulser</span> votre marque ?
+              <h3 className="smart-cta-title-premium">
+                Prêt à <span className="smart-gradient-text-premium">propulser</span> votre marque ?
               </h3>
-              <p className="smart-cta-description">
-                Bénéficiez d'un diagnostic stratégique gratuit et d'une consultation personnalisée
+              <p className="smart-cta-description-premium">
+                Bénéficiez d'un diagnostic stratégique gratuit
               </p>
-              <div className="smart-cta-benefits">
+              <div className="smart-cta-benefits-premium">
                 <div><CheckCircle2 size={16} /> Diagnostic gratuit</div>
                 <div><CheckCircle2 size={16} /> Sans engagement</div>
                 <div><CheckCircle2 size={16} /> Réponse sous 24h</div>
                 <div><CheckCircle2 size={16} /> Stratégie sur mesure</div>
               </div>
-              <form className="smart-cta-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="smart-input-wrapper">
+              <form className="smart-cta-form-premium" onSubmit={(e) => e.preventDefault()}>
+                <div className="smart-input-wrapper-premium">
                   <PhoneCall size={18} />
-                  <input type="tel" placeholder="Votre numéro de téléphone" required />
-                  <div className="smart-input-border"></div>
+                  <input type="tel" placeholder="Votre numéro" required />
+                  <div className="smart-input-border-premium"></div>
                 </div>
-                <button type="submit" className="smart-cta-btn">
-                  Me faire rappeler <ArrowRight size={16} />
+                <button type="submit" className="smart-cta-btn-premium">
+                  Me rappeler <ArrowRight size={16} />
                 </button>
               </form>
-              <p className="smart-cta-note">🔒 Vos données sont confidentielles et protégées</p>
+              <p className="smart-cta-note-premium"> Vos données sont confidentielles</p>
             </div>
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }

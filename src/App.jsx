@@ -3,6 +3,7 @@ import './App.css'
 import './pages/home.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Portfolio from './pages/Portfolio'
@@ -10,10 +11,12 @@ import Elearning from './pages/Elearning'
 import Podcast from './pages/Podcast'
 import Influencer from './pages/Influencer'
 import News from './pages/News'
+import Contact from './pages/Contact'
 
 export default function App(){
   return (
     <div className="ss-app">
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home/>} />
@@ -21,8 +24,9 @@ export default function App(){
         <Route path="/portfolio/*" element={<Portfolio/>} />
         <Route path="/elearning" element={<Elearning/>} />
         <Route path="/podcast" element={<Podcast/>} />
-        <Route path="/influencer" element={<Influencer/>} />
+        <Route path="/influenceur" element={<Influencer/>} />
         <Route path="/news" element={<News/>} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />

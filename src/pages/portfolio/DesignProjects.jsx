@@ -1,121 +1,120 @@
 import React from 'react'
-import './designProjects.css'
-export default function DesignProjects() {
-  const projects = [
-    { 
-      id: 1, 
-      name: 'Identité visuelle Luxury Brand', 
-      description: 'Branding complet pour marque premium de luxe',
-      image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&q=80&fit=crop',
-      category: 'Branding',
-      year: '2024'
-    },
-    { 
-      id: 2, 
-      name: 'Campagne affiche tech startup', 
-      description: 'Campagne graphique pour lancement produit',
-      image: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=600&q=80&fit=crop',
-      category: 'Campagne',
-      year: '2023'
-    },
-    { 
-      id: 3, 
-      name: 'Packaging redesign cosmétique', 
-      description: 'Refonte complète de packaging écologique',
-      image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80&fit=crop',
-      category: 'Packaging',
-      year: '2024'
-    },
-    { 
-      id: 4, 
-      name: 'Motion design intro vidéo', 
-      description: 'Séquence animée 3D pour présentation',
-      image: 'https://images.unsplash.com/photo-1536240474400-9294501c6028?w=600&q=80&fit=crop',
-      category: 'Motion',
-      year: '2023'
-    },
-    { 
-      id: 5, 
-      name: 'Illustration campagne saisonnière', 
-      description: 'Série d\'illustrations éditorialisées',
-      image: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&q=80&fit=crop',
-      category: 'Illustration',
-      year: '2024'
-    },
-    { 
-      id: 6, 
-      name: 'Charte graphique agence', 
-      description: 'Guide visuel complet et système de design',
-      image: 'https://images.unsplash.com/photo-1586717791821-3f44a5638d48?w=600&q=80&fit=crop',
-      category: 'Identité',
-      year: '2023'
-    },
-    { 
-      id: 7, 
-      name: 'Design de couverture album', 
-      description: 'Artwork et packaging pour sortie musicale',
-      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80&fit=crop',
-      category: 'Artwork',
-      year: '2024'
-    },
-    { 
-      id: 8, 
-      name: 'Infographie data storytelling', 
-      description: 'Visualisation de données complexes',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&fit=crop',
-      category: 'Data',
-      year: '2023'
-    },
-    { 
-      id: 9, 
-      name: 'Poster événement culturel', 
-      description: 'Affiche minimaliste pour festival',
-      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80&fit=crop',
-      category: 'Poster',
-      year: '2024'
-    }
-  ]
+import { Palette, Package, Image, ArrowRight } from 'lucide-react'
 
+// Données d'exemple pour les projets Design
+const designProjects = [
+  {
+    id: 1,
+    title: 'Identité Visuelle Luxe',
+    category: 'Branding',
+    year: '2025',
+    image: 'https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=600&q=80',
+    description: 'Création d\'une identité visuelle complète pour une marque de luxe.',
+    fullDescription: 'Une identité visuelle raffinée qui capture l\'essence du luxe et de l\'élégance. Design minimaliste avec des touches dorées et une typographie sophistiquée.',
+    tags: ['Branding', 'Luxe', 'Identité'],
+    stats: [
+      { number: '15+', label: 'Éléments' },
+      { number: '4', label: 'Semaines' },
+      { number: '100%', label: 'Satisfaction' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Packaging Premium',
+    category: 'Packaging',
+    year: '2025',
+    image: 'https://images.unsplash.com/photo-1518176258769-f227c798150e?w=600&q=80',
+    description: 'Design packaging innovant pour une gamme de produits bio.',
+    fullDescription: 'Un packaging élégant et éco-responsable qui met en valeur la qualité des produits. Utilisation de matériaux durables et d\'un design épuré.',
+    tags: ['Packaging', 'Éco-design', 'Premium'],
+    stats: [
+      { number: '5', label: 'Produits' },
+      { number: '70%', label: 'Réduction plastique' },
+      { number: '4.8', label: 'Note client' }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Campagne Print',
+    category: 'Print',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80',
+    description: 'Campagne publicitaire print pour une marque de mode.',
+    fullDescription: 'Une campagne print alliant photographie artistique et design graphique moderne. Mise en scène élégante avec une direction artistique pointue.',
+    tags: ['Print', 'Publicité', 'Mode'],
+    stats: [
+      { number: '12', label: 'Visuels' },
+      { number: '8', label: 'Magazines' },
+      { number: '2M', label: 'Impressions' }
+    ]
+  }
+]
+
+// Fonction pour obtenir l'icône en fonction de la catégorie
+const getCategoryIcon = (category) => {
+  switch(category) {
+    case 'Branding':
+      return <Palette size={16} />
+    case 'Packaging':
+      return <Package size={16} />
+    case 'Print':
+      return <Image size={16} />
+    default:
+      return <Palette size={16} />
+  }
+}
+
+export default function DesignProjects({ onOpenModal }) {
   return (
-    <div className="design-projects-wrapper">
-      <div className="design-projects-header">
-        <div className="design-header-badge"> Créations</div>
-        <h2 className="design-projects-title">Projets Design</h2>
-        <p className="design-projects-description">
-          Créations visuelles, branding et direction artistique — chaque projet raconte une histoire unique.
+    <div className="smartsell-design-projects">
+      <div className="smartsell-design-projects-header">
+        <span className="smartsell-design-projects-badge">
+          <Palette size={16} />
+          Design
+        </span>
+        <h3 className="smartsell-design-projects-title">
+          Créations <span className="smartsell-gradient-text">visuelles</span>
+        </h3>
+        <p className="smartsell-design-projects-subtitle">
+          Des designs qui racontent une histoire et captivent votre audience.
         </p>
       </div>
 
-      <div className="design-projects-grid">
-        {projects.map((project, index) => (
+      <div className="smartsell-design-grid">
+        {designProjects.map((project, index) => (
           <div 
             key={project.id} 
-            className="design-card"
-            style={{ animationDelay: `${index * 0.08}s` }}
+            className="smartsell-design-card"
+            style={{ animationDelay: `${index * 0.1}s` }}
+            onClick={() => onOpenModal(project)}
           >
-            <div className="design-card-image-wrapper">
+            <div className="smartsell-design-card-image-wrapper">
               <img 
                 src={project.image} 
-                alt={project.name}
-                className="design-card-image"
-                loading="lazy"
+                alt={project.title} 
+                className="smartsell-design-card-image"
               />
-              <div className="design-card-overlay">
-                <div className="design-card-overlay-content">
-                  <span className="design-card-category">{project.category}</span>
-                  <span className="design-card-year">{project.year}</span>
+              <div className="smartsell-design-card-shine" />
+              <div className="smartsell-design-card-overlay">
+                <div className="smartsell-design-card-tags">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="smartsell-design-card-tag">{tag}</span>
+                  ))}
                 </div>
+                <span className="smartsell-design-card-year">{project.year}</span>
               </div>
             </div>
-            
-            <div className="design-card-content">
-              <h3 className="design-card-title">{project.name}</h3>
-              <p className="design-card-description">{project.description}</p>
-              <button className="design-card-btn">
-                Voir le projet
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+            <div className="smartsell-design-card-content">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                {getCategoryIcon(project.category)}
+                <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', opacity: 0.6 }}>
+                  {project.category}
+                </span>
+              </div>
+              <h4 className="smartsell-design-card-title">{project.title}</h4>
+              <p className="smartsell-design-card-description">{project.description}</p>
+              <button className="smartsell-design-card-btn">
+                Voir le projet <ArrowRight size={16} />
               </button>
             </div>
           </div>

@@ -1,119 +1,106 @@
 import React from 'react'
-import './webProjects.css'
+import { Globe, Database, Code, ArrowRight } from 'lucide-react'
 
-export default function WebProjects() {
-  const projects = [
-    { 
-      id: 1, 
-      name: 'E-commerce fashion marketplace', 
-      description: 'Plateforme multi-vendors avec paiement intégré et gestion d\'inventaire',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=600&q=80&fit=crop',
-      category: 'E-commerce',
-      year: '2024',
-      tech: ['React', 'Node.js', 'Stripe']
-    },
-    { 
-      id: 2, 
-      name: 'Site corporate entreprise tech', 
-      description: 'Portfolio et showcase de solutions cloud avec animations interactives',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&fit=crop',
-      category: 'Corporate',
-      year: '2023',
-      tech: ['Next.js', 'Tailwind', 'AWS']
-    },
-    { 
-      id: 3, 
-      name: 'Application mobile fitness', 
-      description: 'App iOS/Android avec suivi d\'activité et planification d\'entraînement',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&fit=crop',
-      category: 'Mobile',
-      year: '2024',
-      tech: ['React Native', 'Firebase', 'GraphQL']
-    },
-    { 
-      id: 4, 
-      name: 'Plateforme SaaS analytics', 
-      description: 'Dashboard collaboratif temps réel avec visualisation de données',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&fit=crop',
-      category: 'SaaS',
-      year: '2023',
-      tech: ['Vue.js', 'Django', 'WebSocket']
-    },
-    { 
-      id: 5, 
-      name: 'Refonte site média éditorial', 
-      description: 'CMS headless avec gestion de contenu avancée et SEO optimisé',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80&fit=crop',
-      category: 'Média',
-      year: '2024',
-      tech: ['Nuxt.js', 'Sanity', 'Vercel']
-    },
-    { 
-      id: 6, 
-      name: 'Progressive Web App agence', 
-      description: 'PWA installable avec mode offline et push notifications',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&fit=crop',
-      category: 'PWA',
-      year: '2023',
-      tech: ['React', 'Workbox', 'IndexedDB']
-    }
-  ]
+// Données d'exemple pour les projets Web
+const webProjects = [
+  {
+    id: 1,
+    title: 'E-commerce Luxury',
+    category: 'E-commerce',
+    year: '2025',
+    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&q=80',
+    description: 'Plateforme e-commerce haut de gamme pour marque de luxe.',
+    fullDescription: 'Une expérience d\'achat fluide et élégante avec des animations raffinées, un panier intelligent et un paiement sécurisé.',
+    techs: ['React', 'Node.js', 'Stripe'],
+    stats: [
+      { number: '1500+', label: 'Produits' },
+      { number: '30%', label: 'Conversion' },
+      { number: '99.9%', label: 'Uptime' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Application Dashboard',
+    category: 'App',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+    description: 'Dashboard analytique pour startups SaaS.',
+    fullDescription: 'Un dashboard moderne avec des visualisations de données en temps réel, des rapports personnalisables et une interface ultra-réactive.',
+    techs: ['React', 'D3.js', 'WebSocket'],
+    stats: [
+      { number: '10K+', label: 'Utilisateurs' },
+      { number: '50+', label: 'Métriques' },
+      { number: '2s', label: 'Temps réponse' }
+    ]
+  }
+]
 
+// Fonction pour obtenir l'icône en fonction de la catégorie
+const getCategoryIcon = (category) => {
+  switch(category) {
+    case 'E-commerce':
+      return <Globe size={16} />
+    case 'App':
+      return <Database size={16} />
+    default:
+      return <Code size={16} />
+  }
+}
+
+export default function WebProjects({ onOpenModal }) {
   return (
-    <div className="web-projects-wrapper">
-      <div className="web-projects-header">
-        <div className="web-header-badge"> Innovation</div>
-        <h2 className="web-projects-title">Projets Web</h2>
-        <p className="web-projects-description">
-          Développement, UX/UI et applications digitales — des solutions performantes et élégantes.
+    <div className="smartsell-web-projects">
+      <div className="smartsell-web-projects-header">
+        <span className="smartsell-web-projects-badge">
+          <Globe size={16} />
+          Web
+        </span>
+        <h3 className="smartsell-web-projects-title">
+          Solutions <span className="smartsell-gradient-text">digitales</span>
+        </h3>
+        <p className="smartsell-web-projects-subtitle">
+          Des expériences web innovantes qui transforment vos idées en réalité.
         </p>
       </div>
 
-      <div className="web-projects-grid">
-        {projects.map((project, index) => (
+      <div className="smartsell-web-grid">
+        {webProjects.map((project, index) => (
           <div 
             key={project.id} 
-            className="web-card"
+            className="smartsell-web-card"
             style={{ animationDelay: `${index * 0.1}s` }}
+            onClick={() => onOpenModal(project)}
           >
-            <div className="web-card-image-wrapper">
+            <div className="smartsell-web-card-image-wrapper">
               <img 
                 src={project.image} 
-                alt={project.name}
-                className="web-card-image"
-                loading="lazy"
+                alt={project.title} 
+                className="smartsell-web-card-image"
               />
-              <div className="web-card-overlay">
-                <div className="web-card-tech-stack">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="web-tech-tag">{tech}</span>
+              <div className="smartsell-web-card-badges">
+                <span className="smartsell-web-card-tag">{project.category}</span>
+                <span className="smartsell-web-card-year">{project.year}</span>
+              </div>
+              <div className="smartsell-web-card-overlay">
+                <div className="smartsell-web-card-tech">
+                  {project.techs.map((tech, i) => (
+                    <span key={i} className="smartsell-web-tech-tag">{tech}</span>
                   ))}
                 </div>
               </div>
-              <div className="web-card-badge">
-                <span className="web-card-category">{project.category}</span>
-                <span className="web-card-year">{project.year}</span>
-              </div>
             </div>
-            
-            <div className="web-card-content">
-              <h3 className="web-card-title">{project.name}</h3>
-              <p className="web-card-description">{project.description}</p>
-              <div className="web-card-actions">
-                <button className="web-card-btn">
-                  Découvrir
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-                <button className="web-card-btn-secondary">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-                    <path d="M12 5v4"/>
-                  </svg>
-                  Demo
-                </button>
+            <div className="smartsell-web-card-content">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                {getCategoryIcon(project.category)}
+                <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', opacity: 0.6 }}>
+                  {project.category}
+                </span>
               </div>
+              <h4 className="smartsell-web-card-title">{project.title}</h4>
+              <p className="smartsell-web-card-description">{project.description}</p>
+              <button className="smartsell-web-card-btn">
+                Découvrir <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         ))}

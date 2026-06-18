@@ -1,550 +1,1020 @@
-/* Import Police */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* ============================================
+   SMARTSELL PAGE HERO - Design System Premium
+   Prefix: smartsell-
+   ============================================ */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.hero {
-  min-height: 100vh;
-  background: #0a0118;
-  font-family: 'Inter', sans-serif;
+/* ---- Variables spécifiques ---- */
+.smartsell-page-hero {
+  --smartsell-hero-padding: 120px 0;
+  --smartsell-hero-min-height: 85vh;
+  --smartsell-hero-radius: 0 0 48px 48px;
+  --smartsell-orb-blur: 120px;
+  --smartsell-transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
+  min-height: var(--smartsell-hero-min-height);
+  padding: var(--smartsell-hero-padding);
   overflow: hidden;
   display: flex;
   align-items: center;
-  border-radius: 32px;
+  border-radius: var(--smartsell-hero-radius);
+  isolation: isolate;
+  transition: background 0.6s var(--smartsell-transition-smooth);
 }
 
-/* Background avec orbes */
-.hero-bg {
+/* ---- Thèmes gradient ---- */
+.smartsell-page-hero.smartsell-hero-gradient-default {
+  background: var(--gradient-hero);
+}
+
+.smartsell-page-hero.smartsell-hero-gradient-purple {
+  background: radial-gradient(ellipse at 10% 20%, rgba(106, 43, 133, 0.4) 0%, transparent 60%),
+              radial-gradient(ellipse at 90% 80%, rgba(106, 43, 133, 0.2) 0%, transparent 50%),
+              var(--bg);
+}
+
+.smartsell-page-hero.smartsell-hero-gradient-yellow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(250, 238, 53, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 100%, rgba(106, 43, 133, 0.2) 0%, transparent 50%),
+              var(--bg);
+}
+
+.smartsell-page-hero.smartsell-hero-gradient-mixed {
+  background: radial-gradient(ellipse at 20% 10%, rgba(106, 43, 133, 0.35) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 90%, rgba(250, 238, 53, 0.15) 0%, transparent 50%),
+              var(--bg);
+}
+
+[data-theme="dark"] .smartsell-page-hero.smartsell-hero-gradient-purple {
+  background: radial-gradient(ellipse at 10% 20%, rgba(106, 43, 133, 0.6) 0%, transparent 60%),
+              radial-gradient(ellipse at 90% 80%, rgba(106, 43, 133, 0.3) 0%, transparent 50%),
+              var(--bg);
+}
+
+/* ---- Couche de fond ---- */
+.smartsell-hero-bg-layer {
   position: absolute;
   inset: 0;
-  overflow: hidden;
   z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.orb {
+/* ---- Orbes animés ---- */
+.smartsell-hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  animation: float 10s ease-in-out infinite alternate;
+  filter: blur(var(--smartsell-orb-blur));
+  opacity: 0.3;
+  animation: smartsell-orb-float 15s ease-in-out infinite alternate;
 }
 
-.orb-1 {
-  width: 500px;
-  height: 500px;
-  background: #6b21d6;
-  top: -150px;
-  left: -100px;
-  opacity: 0.4;
-  animation-duration: 12s;
+.smartsell-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--violet);
+  top: -200px;
+  right: -100px;
+  opacity: 0.25;
+  animation-duration: 20s;
 }
 
-.orb-2 {
-  width: 350px;
-  height: 350px;
-  background: #de24fb;
-  top: 50%;
-  right: -80px;
-  opacity: 0.15;
-  animation-duration: 8s;
-  animation-direction: alternate-reverse;
-}
-
-.orb-3 {
-  width: 280px;
-  height: 280px;
-  background: #ef4444;
+.smartsell-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--yellow);
   bottom: -100px;
-  left: 30%;
+  left: -50px;
   opacity: 0.15;
-  animation-duration: 14s;
+  animation-duration: 16s;
+  animation-delay: -3s;
 }
 
-@keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(30px, 40px) scale(1.1);
-  }
+.smartsell-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--violet-300);
+  top: 40%;
+  left: 30%;
+  opacity: 0.1;
+  animation-duration: 18s;
+  animation-delay: -6s;
 }
 
-/* Quadrillage */
-.grid-lines {
+.smartsell-orb-4 {
+  width: 200px;
+  height: 200px;
+  background: #FAEE35;
+  bottom: 20%;
+  right: 30%;
+  opacity: 0.08;
+  animation-duration: 12s;
+  animation-delay: -9s;
+}
+
+@keyframes smartsell-orb-float {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(30px, -40px) scale(1.1) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) scale(0.95) rotate(-3deg); }
+  100% { transform: translate(40px, -20px) scale(1.05) rotate(4deg); }
+}
+
+/* ---- Quadrillage ---- */
+.smartsell-hero-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(251, 191, 36, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 191, 36, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
+    linear-gradient(rgba(106, 43, 133, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106, 43, 133, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
 }
 
-/* Particules */
-.particles-container {
+[data-theme="dark"] .smartsell-hero-grid {
+  background-image: 
+    linear-gradient(rgba(250, 238, 53, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250, 238, 53, 0.05) 1px, transparent 1px);
+}
+
+/* ---- Formes décoratives ---- */
+.smartsell-hero-shapes {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.ss-particle {
+.smartsell-shape {
   position: absolute;
-  background: #de24fb;
   border-radius: 50%;
-  opacity: 0;
-  animation: particleFloat var(--dur, 4s) var(--delay, 0s) ease-in-out infinite;
+  opacity: 0.06;
+  animation: smartsell-shape-pulse 8s ease-in-out infinite alternate;
 }
 
-@keyframes particleFloat {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0);
-  }
-  25% {
-    opacity: 0.6;
-    transform: translate(var(--tx, 10px), var(--ty, -20px)) scale(1);
-  }
-  75% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(var(--tx, 10px) * 2), calc(var(--ty, -20px) * 2)) scale(0.5);
-  }
+.smartsell-shape-1 {
+  width: 80px;
+  height: 80px;
+  background: var(--violet);
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
 }
 
-/* Container principal */
-.hero-container {
+.smartsell-shape-2 {
+  width: 120px;
+  height: 120px;
+  background: var(--yellow);
+  bottom: 20%;
+  right: 8%;
+  animation-delay: -2s;
+  border-radius: 30% 70% 50% 50% / 30% 40% 60% 70%;
+}
+
+.smartsell-shape-3 {
+  width: 60px;
+  height: 60px;
+  background: var(--violet-300);
+  top: 55%;
+  left: 60%;
+  animation-delay: -4s;
+  border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+}
+
+@keyframes smartsell-shape-pulse {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.04; }
+  100% { transform: scale(1.8) rotate(180deg); opacity: 0.12; }
+}
+
+/* ---- Container principal ---- */
+.smartsell-hero-container {
   position: relative;
-  z-index: 2;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 60px 80px;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 0.9fr;
-  gap: 60px;
+  gap: 80px;
   align-items: center;
   width: 100%;
-}
-
-/* Côté gauche */
-.hero-content {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  padding: 8px 18px;
-  border-radius: 50px;
-  margin-bottom: 28px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  color: #de24fb;
-  text-transform: uppercase;
-}
-
-.eyebrow .dot {
-  width: 7px;
-  height: 7px;
-  background: #fbbf24;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-}
-
-.hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 24px;
-}
-
-.hero-title .highlight {
-  color: #fbbf24;
-  position: relative;
-  display: inline-block;
-}
-
-.hero-title .highlight::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #fbbf24, transparent);
-  border-radius: 2px;
-  animation: underlineGrow 0.8s ease-out 0.5s both;
-  transform-origin: left;
-}
-
-@keyframes underlineGrow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.hero-description {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #b4a5d6;
-  max-width: 460px;
-  margin-bottom: 32px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 30px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border-radius: 14px;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: #fbbf24;
-  color: #0a0118;
-  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.45);
-  background: #fcd34d;
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-3px);
-  border-color: rgba(251, 191, 36, 0.4);
-}
-
-.btn-secondary .arrow {
-  transition: transform 0.2s ease;
-}
-
-.btn-secondary:hover .arrow {
-  transform: translateX(5px);
-}
-
-.contact-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  font-size: 0.85rem;
-  color: rgba(251, 191, 36, 0.8);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-.contact-info .separator {
-  width: 4px;
-  height: 4px;
-  background: rgba(251, 191, 36, 0.4);
-  border-radius: 50%;
-}
-
-.phone, .email {
-  transition: color 0.2s ease;
-  cursor: pointer;
-}
-
-.phone:hover, .email:hover {
-  color: #fbbf24;
-}
-
-/* Côté droit - Image */
-.hero-visual {
-  animation: fadeInRight 0.8s ease-out 0.2s both;
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.image-card {
-  position: relative;
-  width: 360px;
-  height: 460px;
+  max-width: 1300px;
   margin: 0 auto;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(251, 191, 36, 0.4);
+  padding: 0 24px;
+  margin-top: 60px;
+}
+
+/* ---- Contenu gauche ---- */
+.smartsell-hero-content-wrapper {
+  position: relative;
+}
+
+.smartsell-hero-deco-line {
+  position: absolute;
+  left: -40px;
+  top: 10%;
+  width: 3px;
+  height: 80%;
+  background: linear-gradient(to bottom, transparent, var(--violet), var(--yellow), transparent);
+  border-radius: 4px;
+  opacity: 0.3;
+  animation: smartsell-deco-line-pulse 3s ease-in-out infinite;
+}
+
+@keyframes smartsell-deco-line-pulse {
+  0%, 100% { opacity: 0.2; transform: scaleY(1); }
+  50% { opacity: 0.5; transform: scaleY(1.05); }
+}
+
+.smartsell-hero-content {
+  animation: smartsell-content-reveal 1s var(--smartsell-transition-smooth) both;
+}
+
+@keyframes smartsell-content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- Eyebrow ---- */
+.smartsell-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 16px;
+  background: rgba(106, 43, 133, 0.08);
+  border: 1px solid rgba(106, 43, 133, 0.15);
+  border-radius: 999px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 0.4s ease;
 }
 
-.image-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.6);
-  border-color: rgba(251, 191, 36, 0.6);
+[data-theme="dark"] .smartsell-hero-eyebrow {
+  background: rgba(106, 43, 133, 0.2);
+  border-color: rgba(106, 43, 133, 0.3);
 }
 
-.image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.smartsell-hero-eyebrow:hover {
+  border-color: var(--yellow);
+  transform: translateX(4px);
 }
 
-.image-overlay {
+.smartsell-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+  animation: smartsell-dot-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes smartsell-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+.smartsell-eyebrow-text {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+
+[data-theme="dark"] .smartsell-eyebrow-text {
+  color: var(--yellow);
+}
+
+.smartsell-eyebrow-line {
+  width: 24px;
+  height: 1.5px;
+  background: linear-gradient(to right, var(--violet), transparent);
+  opacity: 0.3;
+}
+
+/* ---- Titre ---- */
+.smartsell-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.smartsell-hero-title .highlight {
+  background: linear-gradient(135deg, var(--violet), var(--yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.smartsell-title-underline {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--yellow), var(--violet));
+  border-radius: 4px;
+  animation: smartsell-underline-reveal 1s var(--smartsell-transition-smooth) 0.3s both;
+  transform-origin: left;
+}
+
+@keyframes smartsell-underline-reveal {
+  from { transform: scaleX(0); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+/* ---- Description ---- */
+.smartsell-hero-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--fg-muted);
+  max-width: 480px;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.smartsell-description-highlight {
+  display: inline-block;
+  margin-left: 4px;
+  animation: smartsell-sparkle 2s ease-in-out infinite;
+}
+
+@keyframes smartsell-sparkle {
+  0%, 100% { opacity: 0.6; transform: scale(0.9) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+}
+
+/* ---- Boutons ---- */
+.smartsell-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.smartsell-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s var(--smartsell-transition-smooth);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.smartsell-btn .smartsell-btn-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 1, 24, 0.1) 0%,
-    rgba(107, 33, 214, 0.3) 50%,
-    rgba(10, 1, 24, 0.8) 100%
-  );
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 70%);
   pointer-events: none;
 }
 
-/* Badges flottants */
-.floating-badge {
-  position: absolute;
-  z-index: 3;
+.smartsell-btn:hover .smartsell-btn-glow {
+  opacity: 1;
 }
 
-.club-badge {
-  top: 20px;
-  right: -12px;
-  background: #fbbf24;
-  color: #0a0118;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.smartsell-btn-primary {
+  background: var(--violet);
+  color: #fff;
+  box-shadow: 0 12px 32px -8px rgba(106, 43, 133, 0.5);
+}
+
+.smartsell-btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 48px -8px rgba(106, 43, 133, 0.7);
+}
+
+.smartsell-btn-primary .smartsell-btn-icon {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.smartsell-btn-primary:hover .smartsell-btn-icon {
+  transform: translateX(6px) scale(1.1);
+}
+
+.smartsell-btn-secondary {
+  background: rgba(106, 43, 133, 0.08);
+  color: var(--fg);
+  border: 1.5px solid rgba(106, 43, 133, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .smartsell-btn-secondary {
+  background: rgba(106, 43, 133, 0.2);
+  border-color: rgba(106, 43, 133, 0.3);
+  color: #fff;
+}
+
+.smartsell-btn-secondary:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  background: rgba(106, 43, 133, 0.15);
+}
+
+.smartsell-btn-secondary .smartsell-btn-icon {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.smartsell-btn-secondary:hover .smartsell-btn-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* ---- Stats ---- */
+.smartsell-hero-stats {
   display: flex;
+  gap: 32px;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transform: rotate(4deg);
-  animation: badgeFloat 3s ease-in-out infinite alternate;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
 }
 
-.club-badge .badge-icon {
-  font-size: 0.85rem;
-}
-
-@keyframes badgeFloat {
-  0% {
-    transform: rotate(4deg) translateY(0);
-  }
-  100% {
-    transform: rotate(4deg) translateY(-8px);
-  }
-}
-
-.bottom-badge {
-  bottom: 24px;
-  left: 20px;
-  right: 20px;
-  background: rgba(10, 1, 24, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  border-radius: 16px;
-  padding: 14px 18px;
+.smartsell-stat-item {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.green-dot {
+.smartsell-stat-number {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--violet), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.smartsell-stat-label {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.smartsell-stat-divider {
+  width: 2px;
+  height: 24px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ---- Côté droit - Visuel ---- */
+.smartsell-hero-visual-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.smartsell-hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  animation: smartsell-visual-reveal 1s var(--smartsell-transition-smooth) 0.2s both;
+}
+
+@keyframes smartsell-visual-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ---- Cadre décoratif ---- */
+.smartsell-visual-frame {
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.smartsell-frame-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: var(--violet);
+  opacity: 0.2;
+  transition: all 0.6s ease;
+}
+
+.smartsell-hero-visual:hover .smartsell-frame-corner {
+  opacity: 0.5;
+  border-color: var(--yellow);
+}
+
+.smartsell-corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-radius: 4px 0 0 0;
+}
+
+.smartsell-corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-radius: 0 4px 0 0;
+}
+
+.smartsell-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-radius: 0 0 0 4px;
+}
+
+.smartsell-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  border-radius: 0 0 4px 0;
+}
+
+/* ---- Image container ---- */
+.smartsell-hero-image-container {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 4/5;
+  z-index: 1;
+  transition: all 0.6s var(--smartsell-transition-smooth);
+}
+
+.smartsell-hero-image-container:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 40px 80px -12px rgba(106, 43, 133, 0.3);
+}
+
+.smartsell-image-glow {
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at 50% 50%, rgba(250, 238, 53, 0.1), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  animation: smartsell-glow-rotate 20s linear infinite;
+}
+
+@keyframes smartsell-glow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.smartsell-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--smartsell-transition-smooth);
+}
+
+.smartsell-hero-image-container:hover .smartsell-hero-image {
+  transform: scale(1.05);
+}
+
+.smartsell-image-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 1, 24, 0.1) 0%,
+    rgba(106, 43, 133, 0.2) 50%,
+    rgba(10, 1, 24, 0.7) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.smartsell-image-overlay-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(250, 238, 53, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(106, 43, 133, 0.1) 0%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Badges flottants ---- */
+.smartsell-floating-badge {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.smartsell-badge-top {
+  top: 20px;
+  right: -8px;
+  animation: smartsell-badge-float-top 4s ease-in-out infinite alternate;
+}
+
+.smartsell-badge-bottom {
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  animation: smartsell-badge-float-bottom 4s ease-in-out infinite alternate 1s;
+}
+
+@keyframes smartsell-badge-float-top {
+  0% { transform: translateY(0) rotate(2deg); }
+  100% { transform: translateY(-12px) rotate(4deg); }
+}
+
+@keyframes smartsell-badge-float-bottom {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.smartsell-badge-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 16px;
+  background: rgba(250, 238, 53, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .smartsell-badge-content {
+  background: rgba(10, 1, 24, 0.9);
+  border-color: rgba(250, 238, 53, 0.2);
+}
+
+.smartsell-badge-top .smartsell-badge-content {
+  background: linear-gradient(135deg, #FAEE35, #FEF08A);
+}
+
+[data-theme="dark"] .smartsell-badge-top .smartsell-badge-content {
+  background: linear-gradient(135deg, rgba(250, 238, 53, 0.15), rgba(250, 238, 53, 0.05));
+  border-color: rgba(250, 238, 53, 0.2);
+}
+
+.smartsell-badge-icon {
+  font-size: 1.2rem;
+}
+
+.smartsell-badge-top .smartsell-badge-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: #0a0118;
+}
+
+[data-theme="dark"] .smartsell-badge-top .smartsell-badge-text {
+  color: #FAEE35;
+}
+
+.smartsell-badge-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.3) 0%,
+    transparent 50%,
+    rgba(255,255,255,0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- Badge bottom ---- */
+.smartsell-badge-bottom .smartsell-badge-content {
+  background: rgba(10, 1, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(250, 238, 53, 0.15);
+}
+
+[data-theme="dark"] .smartsell-badge-bottom .smartsell-badge-content {
+  background: rgba(10, 1, 24, 0.9);
+}
+
+.smartsell-status-dot {
   width: 10px;
   height: 10px;
   background: #22c55e;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
-  animation: pulse 2s infinite;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+  animation: smartsell-dot-pulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
 
-.badge-text {
-  font-size: 0.8rem;
-  color: #ffffff;
-  font-weight: 500;
-  line-height: 1.4;
+.smartsell-badge-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.badge-text strong {
-  color: #fbbf24;
-  font-weight: 700;
+.smartsell-badge-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
 }
 
-/* Responsive */
+.smartsell-badge-sub {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.smartsell-badge-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(34, 197, 94, 0.3);
+  animation: smartsell-pulse-ring 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes smartsell-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* ---- Particules ---- */
+.smartsell-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.smartsell-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--yellow);
+  border-radius: 50%;
+  opacity: 0;
+  animation: smartsell-particle-float 4s ease-in-out infinite;
+  animation-delay: var(--smartsell-delay, 0s);
+}
+
+@keyframes smartsell-particle-float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(var(--smartsell-x, 20px), var(--smartsell-y, -30px)) scale(1);
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--smartsell-x, 20px) * 1.5), calc(var(--smartsell-y, -30px) * 1.5)) scale(0.5);
+  }
+}
+
+.smartsell-particle:nth-child(1) { top: 20%; left: 10%; --smartsell-x: 30px; --smartsell-y: -40px; }
+.smartsell-particle:nth-child(2) { top: 60%; left: 5%; --smartsell-x: -20px; --smartsell-y: -50px; }
+.smartsell-particle:nth-child(3) { top: 40%; right: 10%; --smartsell-x: 40px; --smartsell-y: 30px; }
+.smartsell-particle:nth-child(4) { top: 75%; right: 20%; --smartsell-x: -30px; --smartsell-y: -20px; }
+.smartsell-particle:nth-child(5) { top: 15%; right: 30%; --smartsell-x: -40px; --smartsell-y: 40px; }
+.smartsell-particle:nth-child(6) { top: 50%; left: 50%; --smartsell-x: 50px; --smartsell-y: -30px; }
+
+/* ---- Scroll indicator ---- */
+.smartsell-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+  opacity: 0.4;
+  animation: smartsell-fade-in-out 3s ease-in-out infinite;
+}
+
+.smartsell-scroll-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-muted);
+}
+
+.smartsell-scroll-line {
+  width: 1px;
+  height: 30px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.smartsell-scroll-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--violet);
+  border-radius: 2px;
+  animation: smartsell-scroll-progress 2s ease-in-out infinite;
+}
+
+@keyframes smartsell-scroll-progress {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(250%); }
+}
+
+@keyframes smartsell-fade-in-out {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* ---- Tablet ---- */
 @media (max-width: 1024px) {
-  .hero-container {
-    padding: 50px 40px;
+  .smartsell-hero-container {
+    grid-template-columns: 1fr 0.8fr;
     gap: 50px;
   }
 
-  .image-card {
-    width: 320px;
-    height: 420px;
+  .smartsell-hero-visual {
+    max-width: 400px;
+  }
+
+  .smartsell-hero-deco-line {
+    display: none;
   }
 }
 
+/* ---- Mobile ---- */
 @media (max-width: 768px) {
-  .hero-container {
+  .smartsell-page-hero {
+    --smartsell-hero-padding: 80px 0 40px;
+    --smartsell-hero-min-height: auto;
+    --smartsell-hero-radius: 0 0 24px 24px;
+    min-height: auto;
+    padding: var(--smartsell-hero-padding);
+  }
+
+  .smartsell-hero-container {
     grid-template-columns: 1fr;
-    padding: 40px 24px;
+    gap: 40px;
     text-align: center;
-    gap: 48px;
-    margin-top: 50px;
+    padding: 0 20px;
   }
 
-  .hero-content {
+  .smartsell-hero-content {
     text-align: center;
   }
 
-  .hero-description {
+  .smartsell-hero-description {
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .hero-buttons {
+  .smartsell-hero-actions {
     justify-content: center;
   }
 
-  .contact-info {
+  .smartsell-hero-stats {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
-  .eyebrow {
+  .smartsell-stat-divider {
+    display: none;
+  }
+
+  .smartsell-hero-visual {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .smartsell-hero-eyebrow {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .image-card {
-    width: 300px;
-    height: 400px;
+  .smartsell-title-underline {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .club-badge {
-    right: -8px;
-    top: 16px;
+  .smartsell-badge-top {
+    right: 0;
+    top: 12px;
+  }
+
+  .smartsell-badge-top .smartsell-badge-content {
     padding: 8px 16px;
   }
 
-  .bottom-badge {
-    bottom: 20px;
-    left: 16px;
-    right: 16px;
-    padding: 12px 16px;
+  .smartsell-badge-bottom {
+    bottom: 16px;
+    left: 12px;
+    right: 12px;
   }
 
-  .badge-text {
-    font-size: 0.75rem;
+  .smartsell-badge-bottom .smartsell-badge-content {
+    padding: 10px 16px;
+  }
+
+  .smartsell-scroll-indicator {
+    display: none;
   }
 }
 
+/* ---- Petit mobile ---- */
 @media (max-width: 480px) {
-  .hero-container {
-    padding: 30px 20px;
+  .smartsell-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
   }
 
-  .hero-title {
-    font-size: 1.8rem;
+  .smartsell-hero-description {
+    font-size: 0.95rem;
   }
 
-  .hero-description {
+  .smartsell-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .smartsell-hero-visual {
+    max-width: 280px;
+  }
+
+  .smartsell-hero-stats {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .smartsell-stat-item {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .smartsell-badge-top {
+    top: 8px;
+  }
+
+  .smartsell-badge-top .smartsell-badge-content {
+    padding: 6px 12px;
+  }
+
+  .smartsell-badge-top .smartsell-badge-text {
+    font-size: 0.65rem;
+  }
+
+  .smartsell-badge-icon {
     font-size: 0.9rem;
   }
 
-  .btn {
-    padding: 12px 24px;
-    font-size: 0.85rem;
+  .smartsell-badge-bottom .smartsell-badge-content {
+    padding: 8px 12px;
   }
 
-  .image-card {
-    width: 260px;
-    height: 350px;
-  }
-
-  .club-badge {
-    font-size: 0.6rem;
-    padding: 6px 14px;
-    right: -4px;
-  }
-
-  .bottom-badge {
-    padding: 10px 14px;
-  }
-
-  .badge-text {
-    font-size: 0.7rem;
-  }
-
-  .green-dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .contact-info {
-    gap: 12px;
+  .smartsell-badge-label {
     font-size: 0.75rem;
   }
 }
