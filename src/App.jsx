@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import './App.css'
-import './pages/home.css'
+
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -12,7 +11,9 @@ import Podcast from './pages/Podcast'
 import Influencer from './pages/Influencer'
 import News from './pages/News'
 import Contact from './pages/Contact'
-
+import './App.css'      // En premier
+import './pages/home.css' // En deuxième
+import './index.css'    // En dernier (pour priorité)
 export default function App(){
   return (
     <div className="ss-app">

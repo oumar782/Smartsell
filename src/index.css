@@ -1,34 +1,15 @@
 /* ============================================
-   INDEX - Design System Ultra Premium
-   Styles globaux pour tous les titres
+   APP - Design System Premium
+   Styles globaux pour toute l'application
    ============================================ */
 
 /* ============================================
-   1. RESET & BASE
+   1. IMPORT DES FONTS
    ============================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-body {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--fg);
-  overflow-x: hidden;
-  transition: background 0.5s ease, color 0.5s ease;
-}
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 /* ============================================
-   2. VARIABLES & FONTS
+   2. VARIABLES GLOBALES
    ============================================ */
 :root {
   /* Fonts */
@@ -39,7 +20,12 @@ body {
   --violet: #6A2B85;
   --violet-600: #571F6E;
   --violet-300: #9A5BB8;
+  --violet-200: #C084D8;
+  --violet-50: #F5ECFA;
   --yellow: #FAEE35;
+  --yellow-600: #E7D91A;
+  --white: #FFFFFF;
+  --black: #1A1A1A;
   
   /* Gradients */
   --gradient-violet: linear-gradient(135deg, #6A2B85 0%, #9A5BB8 50%, #FAEE35 130%);
@@ -61,169 +47,161 @@ body {
 
 /* Application de la police Syne à tous les titres */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-display) !important;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--fg);
+  color: var(--fg, #1A1A2E);
   transition: color 0.3s ease;
 }
 
 /* Tailles spécifiques */
 h1 {
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 6vw, 5rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4vw, 3.2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 2.5vw, 2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
 }
 
 h4 {
-  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
-  font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem) !important;
+  font-weight: 700 !important;
 }
 
 h5 {
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  font-weight: 600;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem) !important;
+  font-weight: 600 !important;
 }
 
 h6 {
-  font-size: clamp(0.85rem, 1vw, 1rem);
-  font-weight: 600;
+  font-size: clamp(0.85rem, 1vw, 1rem) !important;
+  font-weight: 600 !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 /* ============================================
-   4. STYLES DE TITRES PREMIUM AVEC DÉGRADÉ
+   4. STYLE PREMIUM AVEC DÉGRADÉ
    ============================================ */
 
-/* Titre avec dégradé - classe à ajouter manuellement */
-.gradient-title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  background: var(--gradient-violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all var(--transition);
+/* Style premium pour les titres */
+.premium {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.5px !important;
+  background: var(--gradient-violet) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-block !important;
 }
 
-/* Titre avec dégradé animé */
-.gradient-title-animated {
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #6A2B85, #9A5BB8, #FAEE35, #6A2B85);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
+/* Style premium avec animation */
+.premium-animated {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.5px !important;
+  background: linear-gradient(135deg, #6A2B85, #9A5BB8, #FAEE35, #6A2B85) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-block !important;
+  animation: gradientShift 4s ease-in-out infinite !important;
 }
 
-[data-theme="dark"] .gradient-title-animated {
-  background: linear-gradient(135deg, #FAEE35, #9A5BB8, #6A2B85, #FAEE35);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+[data-theme="dark"] .premium-animated {
+  background: linear-gradient(135deg, #FAEE35, #9A5BB8, #6A2B85, #FAEE35) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
-/* Titre avec effet néon */
-.gradient-title-neon {
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  background: var(--gradient-violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 
-    0 0 20px rgba(106, 43, 133, 0.15),
-    0 0 40px rgba(106, 43, 133, 0.08);
-  transition: all var(--transition);
+/* Style premium avec effet néon */
+.premium-neon {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.5px !important;
+  background: var(--gradient-violet) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-block !important;
+  text-shadow: 0 0 30px rgba(106, 43, 133, 0.15), 0 0 60px rgba(106, 43, 133, 0.08) !important;
+  transition: all 0.4s ease !important;
 }
 
-.gradient-title-neon:hover {
-  text-shadow: 
-    0 0 30px rgba(106, 43, 133, 0.3),
-    0 0 60px rgba(106, 43, 133, 0.15),
-    0 0 80px rgba(106, 43, 133, 0.08);
+.premium-neon:hover {
+  text-shadow: 0 0 40px rgba(106, 43, 133, 0.3), 0 0 80px rgba(106, 43, 133, 0.15) !important;
 }
 
-[data-theme="dark"] .gradient-title-neon {
-  text-shadow: 
-    0 0 20px rgba(250, 238, 53, 0.15),
-    0 0 40px rgba(250, 238, 53, 0.08);
+[data-theme="dark"] .premium-neon {
+  background: linear-gradient(135deg, #FAEE35 0%, #9A5BB8 50%, #6A2B85 130%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 0 30px rgba(250, 238, 53, 0.15), 0 0 60px rgba(250, 238, 53, 0.08) !important;
 }
 
-[data-theme="dark"] .gradient-title-neon:hover {
-  text-shadow: 
-    0 0 30px rgba(250, 238, 53, 0.3),
-    0 0 60px rgba(250, 238, 53, 0.15),
-    0 0 80px rgba(250, 238, 53, 0.08);
+[data-theme="dark"] .premium-neon:hover {
+  text-shadow: 0 0 40px rgba(250, 238, 53, 0.3), 0 0 80px rgba(250, 238, 53, 0.15) !important;
 }
 
 /* ============================================
    5. VARIANTES DE TITRES
    ============================================ */
 
-/* Titre de section */
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  transition: color 0.3s ease;
-}
-
 /* Titre de page */
 .page-title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--fg);
-  transition: color 0.3s ease;
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  font-size: clamp(2.8rem, 6vw, 5rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--fg, #1A1A2E);
+}
+
+/* Titre de section */
+.section-title {
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--fg, #1A1A2E);
 }
 
 /* Sous-titre */
 .sub-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--fg-muted);
-  transition: color 0.3s ease;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.4rem, 2.5vw, 2rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--fg-muted, #6B7280);
 }
 
 /* Petit titre */
 .small-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1rem, 1.2vw, 1.2rem);
-  line-height: 1.3;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  font-size: clamp(1rem, 1.2vw, 1.2rem) !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.02em !important;
   text-transform: uppercase;
-  color: var(--fg-muted);
-  transition: color 0.3s ease;
+  color: var(--fg-muted, #6B7280);
 }
 
 /* ============================================
@@ -232,57 +210,34 @@ h6 {
 
 /* Titre avec soulignement */
 .title-underline {
-  position: relative;
-  display: inline-block;
+  position: relative !important;
+  display: inline-block !important;
 }
 
 .title-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60px;
-  height: 4px;
-  background: var(--gradient-violet);
-  border-radius: 2px;
-  transition: width 0.4s ease;
+  content: '' !important;
+  position: absolute !important;
+  bottom: -8px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: var(--gradient-violet) !important;
+  border-radius: 2px !important;
+  transition: width 0.4s ease !important;
 }
 
 .title-underline:hover::after {
-  width: 100%;
-}
-
-[data-theme="dark"] .title-underline::after {
-  background: var(--gradient-violet);
+  width: 100% !important;
 }
 
 /* Titre centré */
 .title-centered {
-  text-align: center;
+  text-align: center !important;
 }
 
 .title-centered .title-underline::after {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Titre avec icône */
-.title-with-icon {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.title-with-icon .title-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: var(--gradient-violet);
-  color: #fff;
-  flex-shrink: 0;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 /* ============================================
@@ -302,7 +257,7 @@ h6 {
 
 /* Fade In pour les titres */
 .fade-in-title {
-  animation: fadeInTitle 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: fadeInTitle 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
 }
 
 @keyframes fadeInTitle {
@@ -318,7 +273,7 @@ h6 {
 
 /* Scale In pour les titres */
 .scale-in-title {
-  animation: scaleInTitle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: scaleInTitle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
 }
 
 @keyframes scaleInTitle {
@@ -333,171 +288,31 @@ h6 {
 }
 
 /* ============================================
-   8. ZOOM D'IMAGE HAUTE QUALITÉ
+   8. RESPONSIVE
    ============================================ */
-.image-zoom-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  cursor: zoom-in;
+@media (max-width: 1024px) {
+  h1, .page-title { font-size: clamp(2.4rem, 5vw, 4rem) !important; }
+  h2, .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important; }
+  h3 { font-size: clamp(1.3rem, 2.2vw, 1.8rem) !important; }
 }
 
-.image-zoom-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
-              filter 0.6s ease;
-  will-change: transform;
+@media (max-width: 768px) {
+  h1, .page-title { font-size: clamp(2rem, 4vw, 2.8rem) !important; }
+  h2, .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem) !important; }
+  h3 { font-size: clamp(1.2rem, 2vw, 1.6rem) !important; }
+  h4 { font-size: clamp(1rem, 1.5vw, 1.2rem) !important; }
+  .sub-title { font-size: clamp(1.2rem, 2vw, 1.6rem) !important; }
 }
 
-.image-zoom-container:hover img {
-  transform: scale(1.15);
-  filter: brightness(1.05) saturate(1.1);
-}
-
-.image-zoom-container::after {
-  content: '🔍';
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 20px;
-  opacity: 0;
-  transform: translateY(10px) scale(0.8);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: #fff;
-  pointer-events: none;
-}
-
-.image-zoom-container:hover::after {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.image-zoom-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(106, 43, 133, 0.2), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.image-zoom-container:hover::before {
-  opacity: 1;
+@media (max-width: 480px) {
+  h1, .page-title { font-size: clamp(1.8rem, 3.5vw, 2.4rem) !important; }
+  h2, .section-title { font-size: clamp(1.4rem, 2.8vw, 1.8rem) !important; }
+  h3 { font-size: clamp(1.1rem, 2vw, 1.4rem) !important; }
+  .title-underline::after { width: 40px !important; height: 3px !important; }
 }
 
 /* ============================================
-   9. REVEAL ANIMATIONS
-   ============================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(60px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.reveal-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* ============================================
-   10. SCROLLBAR
-   ============================================ */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6A2B85, #FAEE35);
-  border-radius: 999px;
-  transition: all 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FAEE35, #6A2B85);
-}
-
-/* ============================================
-   11. SÉLECTION
-   ============================================ */
-::selection {
-  background: #6A2B85;
-  color: #fff;
-}
-
-::-moz-selection {
-  background: #6A2B85;
-  color: #fff;
-}
-
-[data-theme="dark"] ::selection {
-  background: #FAEE35;
-  color: #1A1A2E;
-}
-
-[data-theme="dark"] ::-moz-selection {
-  background: #FAEE35;
-  color: #1A1A2E;
-}
-
-/* ============================================
-   12. FOCUS VISIBLE
-   ============================================ */
-:focus-visible {
-  outline: 3px solid #6A2B85;
-  outline-offset: 2px;
-}
-
-[data-theme="dark"] :focus-visible {
-  outline-color: #FAEE35;
-}
-
-/* ============================================
-   13. ACCESSIBILITÉ
+   9. ACCESSIBILITÉ
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -508,80 +323,13 @@ h6 {
     transition-duration: 0.01ms !important;
   }
   
-  .image-zoom-container:hover img {
-    transform: scale(1);
-  }
-  
-  .reveal,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  .gradient-title-animated {
+  .premium-animated {
     animation: none !important;
   }
-}
-
-/* ============================================
-   14. RESPONSIVE
-   ============================================ */
-@media (max-width: 1024px) {
-  h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
-  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-  h3 { font-size: clamp(1.3rem, 2.2vw, 1.8rem); }
   
-  .page-title { font-size: clamp(2.4rem, 5vw, 4rem); }
-  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-  
-  .image-zoom-container:hover img {
-    transform: scale(1.08);
-  }
-}
-
-@media (max-width: 768px) {
-  h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
-  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
-  h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
-  h4 { font-size: clamp(1rem, 1.5vw, 1.2rem); }
-  
-  .page-title { font-size: clamp(2rem, 4vw, 2.8rem); }
-  .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); }
-  .sub-title { font-size: clamp(1.2rem, 2vw, 1.6rem); }
-  
-  .title-with-icon {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .image-zoom-container:hover img {
-    transform: scale(1.05);
-  }
-  
-  .image-zoom-container::after {
-    font-size: 14px;
-    padding: 4px 10px;
-    bottom: 12px;
-    right: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); }
-  h2 { font-size: clamp(1.4rem, 2.8vw, 1.8rem); }
-  h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
-  
-  .page-title { font-size: clamp(1.8rem, 3.5vw, 2.4rem); }
-  .section-title { font-size: clamp(1.4rem, 2.8vw, 1.8rem); }
-  
-  .title-underline::after {
-    width: 40px;
-    height: 3px;
-  }
-  
-  .image-zoom-container {
-    cursor: zoom-in;
+  .fade-in-title, .scale-in-title {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
